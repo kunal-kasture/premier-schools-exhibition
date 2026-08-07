@@ -1,0 +1,231 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: rgba(255, 255, 255, 1);
+  transition:
+    background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: visible;
+}
+
+.header__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  height: 100px;
+  overflow: visible;
+}
+
+.header__logo-img {
+  display: block;
+  width: 201px;
+  height: 157px;
+  padding-top: 3px;
+  padding-left: 76px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.header__nav {
+  margin-left: auto;
+}
+
+.header__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background-color: #ffffff;
+  color: #0b0730;
+  padding: 4px 16px 4px 4px;
+  border: 1px solid #0b0730;
+  border-radius: 4px;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.header__btn-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background-color: #0b0730;
+  color: #ffffff;
+  border-radius: 4px;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
+}
+
+.header__btn-arrow {
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.header__btn:hover,
+.header__btn:focus-visible,
+.header__btn--active {
+  background-color: #0b0730;
+  color: #ffffff;
+  border-color: #0b0730;
+  outline: none;
+}
+
+.header__btn:hover .header__btn-icon,
+.header__btn:focus-visible .header__btn-icon,
+.header__btn--active .header__btn-icon {
+  background-color: #ffffff;
+  color: #0b0730;
+}
+
+.header__btn:hover .header__btn-arrow,
+.header__btn:focus-visible .header__btn-arrow,
+.header__btn--active .header__btn-arrow {
+  transform: translate(2px, -2px);
+}
+
+header--scrolled {
+  background-color: #0b0730;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+}
+
+.header--scrolled .header__logo-link {
+  position: relative;
+  top: auto;
+  left: auto;
+  transform: translateY(0);
+}
+
+.header--scrolled .header__btn {
+  background-color: transparent;
+  color: #ffffff;
+  border-color: #ffffff;
+}
+
+.header--scrolled .header__btn-icon {
+  background-color: #ffffff;
+  color: #0b0730;
+}
+
+.register-btn {
+  position: absolute;
+  top: 19px;
+  right: 119px;
+  display: flex;
+  align-items: center;
+  width: 205px;
+  height: 60px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.register-btn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 4px;
+  box-shadow: inset 0 0 0 2px #000e38;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.btn-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  border-radius: 4px;
+  overflow: hidden;
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+}
+
+.bg-slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(270deg, #000e38 0%, #3f186a 100%);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.8s linear;
+  z-index: 1;
+}
+
+.icon-box {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 100%;
+  background: linear-gradient(270deg, #000e38 0%, #3f186a 100%);
+  transition: opacity 0.8s linear;
+  z-index: 2;
+}
+
+.arrow-container {
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(0deg);
+  transition: transform 0.8s linear;
+}
+
+.arrow-container svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.text-box {
+  position: relative;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #000e38;
+  font-size: 14px;
+  font-weight: 700;
+  font-weight: bold;
+  height: 19px;
+  width: 105px;
+  text-transform: uppercase;
+  transition: color 0.1s linear;
+  z-index: 2;
+}
+
+.register-btn:hover .bg-slider {
+  transform: scaleX(1);
+}
+
+.register-btn:hover .icon-box {
+  background: transparent;
+}
+
+.register-btn:hover .arrow-container {
+  transform: rotate(45deg);
+}
+
+.register-btn:hover .text-box {
+  color: #ffffff;
+}
