@@ -1,0 +1,117 @@
+/* What makes parents choose us + visitor review videos */
+.visitors-review {
+  padding: 4rem 2rem;
+}
+
+.visitors-review__title {
+  margin: 0;
+  text-align: center;
+  font-size: 48px;
+  font-weight: 600;
+  font-style: normal;
+  background: linear-gradient(360deg, #000e38 0%, #3f186a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.visitors-review__label {
+  margin: 1rem 0 0;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #3f186a;
+}
+
+/* Single row of 417.61x290 video cards, scrolls sideways if they overflow */
+.visitors-review__grid {
+  display: flex;
+  gap: 30px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  margin: 3rem auto 0;
+  padding-bottom: 4px;
+}
+
+.visitors-review__grid::-webkit-scrollbar {
+  display: none;
+}
+
+.visitors-review__card {
+  position: relative;
+  flex: 0 0 417.61px;
+  width: 417.61px;
+  height: 290px;
+  border-radius: 17.36px;
+  overflow: hidden;
+  background: #000000;
+  scroll-snap-align: start;
+}
+
+.visitors-review__video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Play/pause control pinned to the bottom-left of each video */
+.visitors-review__toggle {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 1.1rem;
+  border: none;
+  border-radius: 2rem;
+  background: rgba(0, 0, 0, 0.6);
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.visitors-review__toggle:hover {
+  background: rgba(63, 24, 106, 0.85);
+}
+
+.visitors-review__toggle:focus-visible {
+  outline: 2px solid #ffb703;
+  outline-offset: 2px;
+}
+
+.visitors-review__toggle-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0.9rem;
+  font-size: 11px;
+  line-height: 1;
+}
+
+/* tablets */
+@media (max-width: 64rem) {
+  .visitors-review__title {
+    font-size: 36px;
+  }
+}
+
+/* phones */
+@media (max-width: 30rem) {
+  .visitors-review {
+    padding: 4rem 1.5rem;
+  }
+
+  .visitors-review__title {
+    font-size: 26px;
+  }
+}

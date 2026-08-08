@@ -8,6 +8,7 @@
 @import "./components/event-video.css";
 @import "./components/awards.css";
 @import "./components/exhibition.css";
+@import "./components/visitors-review.css";
 
 /* Base styles */
 body {
