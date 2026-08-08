@@ -1,0 +1,100 @@
+/* Choose-the-school showcase */
+.choose-school {
+  padding: 4rem 1rem;
+}
+
+.choose-school__title {
+  background: linear-gradient(360deg, #000e38 0%, #3f186a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  font-size: 48px;
+  font-weight: 600;
+  text-align: center;
+  margin: 0;
+}
+
+.choose-school__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.5rem;
+  margin: 3rem auto 0;
+  max-width: 1752px; /* 4 × 420 + 3 × 24 */
+}
+
+.choose-school__card {
+  width: 100%;
+  aspect-ratio: 420 / 405;
+  overflow: hidden;
+}
+
+.choose-school__card img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Pagination dots (slider mode only) */
+.choose-school__dots {
+  display: none;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+.choose-school__dot {
+  width: 10px;
+  height: 10px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: #c9c4d8;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.choose-school__dot--active {
+  background: #3f186a;
+  transform: scale(1.25);
+}
+
+@media (max-width: 64rem) {
+  .choose-school__grid {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+    gap: 1rem;
+    padding-bottom: 1rem;
+    scroll-snap-type: x mandatory;
+  }
+
+  .choose-school__title {
+    font-size: 36px;
+  }
+
+  .choose-school__card {
+    flex: 0 0 340px;
+    width: 340px;
+    scroll-snap-align: start;
+  }
+
+  .choose-school__dots {
+    display: flex;
+  }
+}
+
+@media (max-width: 30rem) {
+  .choose-school__title {
+    font-size: 26px;
+  }
+
+  .choose-school__card {
+    flex: 0 0 280px;
+    width: 280px;
+  }
+}
