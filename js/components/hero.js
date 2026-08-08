@@ -9,7 +9,10 @@ function initHeroSlider() {
   const heroSlider = document.getElementById("hero-slider");
 
   let currentSlide = 0;
-  let isPlaying = true;
+  const reduceMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)",
+  ).matches;
+  let isPlaying = !reduceMotion;
   let slideInterval = null;
 
   // Move to a slide and keep active/aria state in sync
@@ -31,8 +34,9 @@ function initHeroSlider() {
     updateSlide(currentSlide - 1);
   }
 
-  // Start auto-advancing every 5s
+  // Start auto-advancing every 5s (respects the reduced-motion preference)
   function startAutoPlay() {
+    if (reduceMotion) return;
     if (!slideInterval) {
       slideInterval = setInterval(nextSlide, 5000);
     }
@@ -114,4 +118,9 @@ function initHeroSlider() {
   );
 
   startAutoPlay();
+  if (reduceMotion) {
+    pauseBtn?.setAttribute("aria-pressed", "true");
+    pauseBtn?.setAttribute("aria-label", "Play slideshow");
+    if (pauseBtn) pauseBtn.textContent = "▶";
+  }
 }

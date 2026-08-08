@@ -320,6 +320,12 @@
   z-index: 1;
 }
 
+/* Visible keyboard focus indicator */
+.submit-btn:focus-visible {
+  outline: 2px solid #ffb703;
+  outline-offset: 2px;
+}
+
 /* White border on top; pointer-events off so it stays click-through */
 .submit-btn::after {
   content: "";

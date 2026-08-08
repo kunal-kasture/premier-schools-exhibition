@@ -1,0 +1,266 @@
+/* Pre-schedule CTA with blended image */
+.pre-schedule {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  background: linear-gradient(270deg, #ead7ff 45.09%, #dec1ff 100%);
+}
+
+.pre-schedule__content {
+  padding: 4rem 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.pre-schedule__eyebrow,
+.pre-schedule__note {
+  background: linear-gradient(270deg, #3f186a 0%, #281154 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  font-size: 32px;
+  font-weight: 400;
+  font-style: italic;
+  margin: 0;
+}
+
+/* Give the exclamation mark's italic overhang room so it isn't clipped */
+.pre-schedule__eyebrow {
+  padding-right: 10px;
+}
+
+.pre-schedule__title {
+  margin: 0;
+}
+
+.pre-schedule__title-line {
+  display: block;
+  font-size: 64px;
+  font-weight: 400;
+  line-height: 1.1;
+  color: #000e38;
+}
+
+.pre-schedule__media {
+  align-self: stretch;
+}
+
+/* Media half dissolves into the section background with a smooth smudged edge */
+.pre-schedule__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.12) 4%,
+    rgba(0, 0, 0, 0.3) 8%,
+    rgba(0, 0, 0, 0.5) 13%,
+    rgba(0, 0, 0, 0.72) 18%,
+    rgba(0, 0, 0, 0.88) 22%,
+    #000 24%
+  );
+  mask-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.12) 4%,
+    rgba(0, 0, 0, 0.3) 8%,
+    rgba(0, 0, 0, 0.5) 13%,
+    rgba(0, 0, 0, 0.72) 18%,
+    rgba(0, 0, 0, 0.88) 22%,
+    #000 24%
+  );
+}
+
+.pre-schedule-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 243px;
+  height: 60px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+/* Visible keyboard focus indicator */
+.pre-schedule-btn:focus-visible {
+  outline: 2px solid #ffb703;
+  outline-offset: 2px;
+}
+
+/* Navy border drawn with an inset shadow so it doesn't capture clicks */
+.pre-schedule-btn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 4px;
+  box-shadow: inset 0 0 0 2px #000e38;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.pre-schedule-btn__content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(270deg, #ead7ff 45.09%, #dec1ff 100%);
+  display: flex;
+  align-items: center;
+  border-radius: 4px;
+  overflow: hidden;
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+}
+
+/* Gradient layer that slides in from the left on hover */
+.pre-schedule-btn__bg-slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(270deg, #000e38 0%, #3f186a 100%);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s linear;
+  z-index: 1;
+}
+
+.pre-schedule-btn__icon-box {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 100%;
+  background: linear-gradient(270deg, #000e38 0%, #3f186a 100%);
+  transition: opacity 0.4s linear;
+  z-index: 2;
+}
+
+.pre-schedule-btn__arrow {
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(0deg);
+  transition: transform 0.4s linear;
+}
+
+.pre-schedule-btn__arrow img {
+  display: block;
+}
+
+.pre-schedule-btn__text {
+  position: relative;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #000e38;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  transition: color 0.1s linear;
+  z-index: 2;
+}
+
+/* Hover: slide the gradient in, rotate the arrow, white label */
+.pre-schedule-btn:hover .pre-schedule-btn__bg-slider {
+  transform: scaleX(1);
+}
+
+.pre-schedule-btn:hover .pre-schedule-btn__icon-box {
+  background: transparent;
+}
+
+.pre-schedule-btn:hover .pre-schedule-btn__arrow {
+  transform: rotate(45deg);
+}
+
+.pre-schedule-btn:hover .pre-schedule-btn__text {
+  color: #ffffff;
+}
+
+@media (max-width: 64rem) {
+  .pre-schedule {
+    grid-template-columns: 1fr;
+  }
+
+  .pre-schedule__content {
+    padding: 3rem 2rem;
+  }
+
+  .pre-schedule__eyebrow,
+  .pre-schedule__note {
+    font-size: 24px;
+  }
+
+  .pre-schedule__title-line {
+    font-size: 38px;
+  }
+
+  /* On small screens the media sits below the content, so the blend fades top-to-bottom */
+  .pre-schedule__media img {
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.1) 4%,
+      rgba(0, 0, 0, 0.26) 9%,
+      rgba(0, 0, 0, 0.46) 14%,
+      rgba(0, 0, 0, 0.68) 19%,
+      rgba(0, 0, 0, 0.86) 23%,
+      #000 26%
+    );
+    mask-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.1) 4%,
+      rgba(0, 0, 0, 0.26) 9%,
+      rgba(0, 0, 0, 0.46) 14%,
+      rgba(0, 0, 0, 0.68) 19%,
+      rgba(0, 0, 0, 0.86) 23%,
+      #000 26%
+    );
+  }
+}
+
+@media (max-width: 30rem) {
+  .pre-schedule__content {
+    padding: 2.5rem 1.25rem;
+  }
+
+  .pre-schedule__eyebrow,
+  .pre-schedule__note {
+    font-size: 16px;
+  }
+
+  .pre-schedule__title-line {
+    font-size: 20px;
+  }
+
+  .pre-schedule-btn {
+    width: 227px;
+    height: 44px;
+  }
+
+  .pre-schedule-btn__icon-box {
+    width: 44px;
+  }
+
+  .pre-schedule-btn__arrow {
+    width: 14px;
+    height: 14px;
+  }
+}

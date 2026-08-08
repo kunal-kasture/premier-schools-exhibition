@@ -59,6 +59,12 @@
   z-index: 1;
 }
 
+/* Visible keyboard focus indicator */
+.register-btn:focus-visible {
+  outline: 2px solid #ffb703;
+  outline-offset: 2px;
+}
+
 /* Navy border drawn with an inset shadow so it doesn't capture clicks */
 .register-btn::after {
   content: "";

@@ -41,6 +41,12 @@
   background: rgba(63, 24, 106, 0.85);
 }
 
+/* Visible keyboard focus indicator */
+.event-video__toggle:focus-visible {
+  outline: 2px solid #ffb703;
+  outline-offset: 2px;
+}
+
 .event-video__toggle-icon {
   display: inline-flex;
   align-items: center;

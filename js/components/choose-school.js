@@ -16,11 +16,35 @@ function initChooseSchoolSlider() {
     return card.getBoundingClientRect().width + gap;
   };
 
-  const updateDots = () => {
+  // Real snap stops: card i starts at i * step, clamped to the scrollable range.
+  const positions = () => {
     const s = step();
-    const index = s > 0 ? Math.round(grid.scrollLeft / s) : 0;
+    const maxScroll = grid.scrollWidth - grid.clientWidth;
+    const stops = [];
+    for (let i = 0; i < cards.length; i++) {
+      stops.push(Math.min(i * s, maxScroll));
+    }
+    return stops;
+  };
+
+  const updateDots = () => {
+    const stops = positions();
+    const scroll = grid.scrollLeft;
+    let index = 0;
+    let best = Infinity;
+    stops.forEach((stop, i) => {
+      const dist = Math.abs(scroll - stop);
+      if (dist < best) {
+        best = dist;
+        index = i;
+      }
+    });
+    // Reaching the end of the scroll always highlights the last dot.
+    if (stops.length && scroll >= stops[stops.length - 1] - 1) {
+      index = stops.length - 1;
+    }
     dots.forEach((dot, i) => {
-      const active = i === Math.max(0, Math.min(index, dots.length - 1));
+      const active = i === index;
       dot.classList.toggle("choose-school__dot--active", active);
       if (active) {
         dot.setAttribute("aria-current", "true");
@@ -34,7 +58,8 @@ function initChooseSchoolSlider() {
 
   dots.forEach((dot, i) => {
     dot.addEventListener("click", () => {
-      grid.scrollTo({ left: i * step(), behavior: "smooth" });
+      const stops = positions();
+      grid.scrollTo({ left: stops[i] ?? 0, behavior: "smooth" });
     });
   });
 

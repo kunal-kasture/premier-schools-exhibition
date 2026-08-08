@@ -8,13 +8,21 @@ function initEventVideo() {
 
   const sync = () => {
     const playing = !video.paused && !video.ended;
-    toggle.setAttribute("aria-pressed", String(!playing));
-    text.textContent = playing ? "Pause Event Video" : "Play Event Video";
-    icon.textContent = playing ? "❚❚" : "▶";
+    const mutedState = video.muted;
+    toggle.setAttribute("aria-pressed", String(!playing || mutedState));
+    text.textContent = mutedState
+      ? "Play Event Video"
+      : playing
+        ? "Pause Event Video"
+        : "Play Event Video";
+    icon.textContent = mutedState ? "▶" : playing ? "❚❚" : "▶";
   };
 
   toggle.addEventListener("click", () => {
-    if (video.paused || video.ended) {
+    if (video.muted) {
+      video.muted = false;
+      video.play();
+    } else if (video.paused || video.ended) {
       video.play();
     } else {
       video.pause();
@@ -24,5 +32,6 @@ function initEventVideo() {
   video.addEventListener("play", sync);
   video.addEventListener("pause", sync);
   video.addEventListener("ended", sync);
+  video.addEventListener("volumechange", sync);
   sync();
 }
