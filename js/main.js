@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initStickyHeader();
   initHeroSlider();
   initSchoolSlider();
+  initEventVideo();
 });
 
 // Pause/play toggle for the scrolling school logos.

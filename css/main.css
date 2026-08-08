@@ -3,6 +3,7 @@
 @import "./components/hero.css";
 @import "./components/achievements.css";
 @import "./components/participating-schools.css";
+@import "./components/event-video.css";
 
 /* Base styles */
 body {

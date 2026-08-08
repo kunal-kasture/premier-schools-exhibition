@@ -555,11 +555,29 @@
           </div>
         </div>
       </section>
+
+      <!-- Event video -->
+      <section class="event-video" aria-label="Event video">
+        <video
+          class="event-video__player"
+          src="./assets/event-video.mp4"
+          autoplay
+          muted
+          loop
+          playsinline
+          aria-label="Premier Schools Exhibition event video"
+        ></video>
+        <button class="event-video__toggle" type="button" aria-pressed="false">
+          <span class="event-video__toggle-icon" aria-hidden="true">❚❚</span>
+          <span class="event-video__toggle-text">Play Event Video</span>
+        </button>
+      </section>
     </main>
 
     <!-- Scripts deferred so they work from file:// -->
     <script defer src="./js/components/header.js"></script>
     <script defer src="./js/components/hero.js"></script>
+    <script defer src="./js/components/event-video.js"></script>
     <script defer src="./js/main.js"></script>
   </body>
 </html>

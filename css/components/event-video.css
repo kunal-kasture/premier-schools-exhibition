@@ -1,0 +1,51 @@
+/* Full-width event video section */
+.event-video {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  max-height: 100vh;
+  background: #000000;
+  overflow: hidden;
+}
+
+.event-video__player {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.22); /* zoom crops black bars baked into the video file */
+  background: #000000;
+}
+
+/* Play/pause control pinned to the bottom-left of the video */
+.event-video__toggle {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 1.1rem;
+  border: none;
+  border-radius: 2rem;
+  background: rgba(0, 0, 0, 0.6);
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.event-video__toggle:hover {
+  background: rgba(63, 24, 106, 0.85);
+}
+
+.event-video__toggle-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0.9rem;
+  font-size: 11px;
+  line-height: 1;
+}
