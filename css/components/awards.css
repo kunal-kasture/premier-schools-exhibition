@@ -1,0 +1,294 @@
+/* Awards & attractions section */
+.awards {
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  align-items: center;
+  justify-content: center;
+  gap: 3.5rem;
+  min-height: 852px;
+  padding: 0 2rem;
+  background: url("../../assets/bg-awards.svg") center / cover no-repeat;
+}
+
+/* Four diamonds grouped into one larger diamond with a 20px gap between them */
+.awards__photos {
+  position: relative;
+  width: 646.34px;
+  height: 646.34px;
+  flex-shrink: 0;
+}
+
+.awards__photo {
+  position: absolute;
+  width: 303.17px;
+  height: 303.17px;
+  object-fit: cover;
+  object-position: center;
+  clip-path: path(
+    "M 123.301 28.284 Q 151.585 0 179.869 28.284 L 274.886 123.301 Q 303.17 151.585 274.886 179.869 L 179.869 274.886 Q 151.585 303.17 123.301 274.886 L 28.284 179.869 Q 0 151.585 28.284 123.301 L 123.301 28.284 Z"
+  );
+  filter: drop-shadow(0 16px 40px rgba(0, 14, 56, 0.25));
+}
+
+/* Group diamond: top -> left -> right -> bottom, inner tips pulled 20px from center */
+.awards__photo--1 {
+  top: 0;
+  left: 171.585px;
+}
+
+.awards__photo--2 {
+  top: 171.585px;
+  left: 0;
+}
+
+.awards__photo--3 {
+  top: 171.585px;
+  left: 343.17px;
+}
+
+.awards__photo--4 {
+  top: 343.17px;
+  left: 171.585px;
+}
+
+.awards__logo img {
+  width: 307.14px;
+  height: 292.14px;
+  display: block;
+}
+
+.awards__content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.25rem;
+}
+
+.awards__title {
+  margin: 0;
+  font-size: 48px;
+  font-weight: 600;
+  line-height: 1.15;
+  color: #000e38;
+}
+
+.awards__title span {
+  display: block;
+}
+
+.awards__btns {
+  display: flex;
+  gap: 27.27px;
+  flex-wrap: wrap;
+}
+
+.awards__btn {
+  width: 273px;
+  height: 60px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.awards__btn--primary {
+  border: 2px solid transparent;
+  background: linear-gradient(360deg, #000e38 0%, #3f186a 100%);
+  color: #ffffff;
+}
+
+.awards__btn--primary:hover {
+  background: linear-gradient(360deg, #3f186a 0%, #000e38 100%);
+}
+
+.awards__btn--ghost {
+  border: 2px solid #3f186a;
+  background: transparent;
+  color: #3f186a;
+}
+
+.awards__btn--ghost:hover {
+  background: #3f186a;
+  color: #ffffff;
+}
+
+.awards__btn:focus-visible {
+  outline: 2px solid #ffb703;
+  outline-offset: 2px;
+}
+
+.awards__heading {
+  margin: 0.5rem 0 0;
+  font-size: 24px;
+  font-weight: 700;
+  color: #000e38;
+}
+
+.awards__text {
+  margin: 0;
+  max-width: 34ch;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: rgba(0, 0, 0, 1);
+}
+
+/* Reuse the pre-schedule button, just narrower and with a transparent fill */
+.awards__know-more {
+  width: 214px;
+}
+
+.awards__know-more .pre-schedule-btn__content {
+  background: transparent;
+}
+
+@media (max-width: 1280px) {
+  .awards {
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+  }
+
+  .awards__photos {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 64rem) {
+  .awards {
+    height: auto;
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
+    padding: 4rem 1.5rem;
+    gap: 2.5rem;
+    overflow-x: clip;
+  }
+
+  /* Tablet: 3 diamond photos + the award logo form the diamond group, adaptive scale.
+     The logo replaces the hidden top photo (P1). Negative margins offset the
+     scaled-down group's dead space so no empty gap shows below the photos. */
+  /* Title sits above the star group: the content block becomes transparent to the
+     grid (display: contents) so its children act as direct grid items. */
+  .awards__title {
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: center;
+    margin-bottom: 1.25rem;
+    font-size: 36px;
+  }
+
+  .awards__content {
+    display: contents;
+    text-align: center;
+  }
+
+  .awards__photos,
+  .awards__logo {
+    grid-column: 1;
+    grid-row: 2;
+    margin-top: -24.634px;
+    margin-bottom: -64.634px;
+  }
+
+  .awards__photos {
+    transform: scale(0.8);
+    transform-origin: center;
+  }
+
+  .awards__photo--1 {
+    display: none;
+  }
+
+  /* Interchange: right photo moves to the bottom slot, bottom photo to the right slot */
+  .awards__photo--3 {
+    top: 343.17px;
+    left: 171.585px;
+  }
+
+  .awards__photo--4 {
+    top: 171.585px;
+    left: 343.17px;
+  }
+
+  /* Logo wrapper mirrors the photos group so it scales together, logo sits in the top slot.
+     Tablet scale is adaptive (0.8); strict sizes apply on phones in the <=30rem query. */
+  .awards__logo {
+    width: 646.34px;
+    height: 646.34px;
+    position: relative;
+    transform: scale(0.8);
+    transform-origin: center;
+    z-index: 2;
+  }
+
+  .awards__logo img {
+    position: absolute;
+    top: -75px;
+    left: 169.6px;
+    width: 307.14px;
+    height: 292.14px;
+  }
+
+  .awards__title {
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: center;
+    margin-bottom: 1.25rem;
+    font-size: 36px;
+  }
+
+  /* The title sits above the star group: the content block becomes transparent to
+     the grid (display: contents) so its children act as direct grid items. */
+
+  .awards__btns {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 30rem) {
+  /* Phone: strict mobile sizes (photos 187.86px, star 187.14x178px, buttons 189x44) */
+  .awards__photos,
+  .awards__logo {
+    margin-top: -82.915px;
+    margin-bottom: -122.915px;
+  }
+
+  .awards__photos {
+    transform: scale(0.619661);
+  }
+
+  .awards__logo {
+    transform: scale(0.6093);
+  }
+
+  .awards__logo img {
+    top: -67px;
+  }
+
+  .awards__btns {
+    flex-wrap: nowrap;
+    gap: 20px;
+  }
+
+  .awards__btn {
+    width: 189px;
+    height: 44px;
+    flex-shrink: 0;
+  }
+
+  .awards__title {
+    font-size: 26px;
+  }
+
+  .awards__content {
+    width: 100%;
+  }
+
+  .awards__text {
+    font-size: 16px;
+  }
+}

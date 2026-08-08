@@ -6,6 +6,7 @@
 @import "./components/participating-schools.css";
 @import "./components/pre-schedule.css";
 @import "./components/event-video.css";
+@import "./components/awards.css";
 
 /* Base styles */
 body {
