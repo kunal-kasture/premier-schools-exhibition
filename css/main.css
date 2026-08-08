@@ -1,6 +1,7 @@
 /* Entry point: header styles first, then hero styles */
 @import "./components/header.css";
 @import "./components/hero.css";
+@import "./components/achievements.css";
 
 /* Global base styles shared across the whole page */
 body {
