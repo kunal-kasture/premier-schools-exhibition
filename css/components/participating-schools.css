@@ -1,0 +1,120 @@
+/* Two logo rows sliding in opposite directions; pause on hover/focus */
+.participating-schools {
+  padding: 3rem 1rem;
+  overflow: hidden;
+}
+
+.participating-schools__title {
+  background: linear-gradient(360deg, #000e38 0%, #3f186a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  font-size: 32px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.participating-schools__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.participating-schools__pause-btn {
+  padding: 0.5rem 1.25rem;
+  border: 2px solid #3f186a;
+  border-radius: 4px;
+  background: transparent;
+  color: #3f186a;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    color 0.2s;
+}
+
+.participating-schools__pause-btn:hover {
+  background: #3f186a;
+  color: #ffffff;
+}
+
+/* JS toggles this class to pause both rows */
+.participating-schools--paused .school-slider__track {
+  animation-play-state: paused;
+}
+
+/* Overflow-hidden strip; the track inside does the sliding */
+.school-slider {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 1rem 0 2rem;
+}
+
+/* Track holds two copies so the loop is seamless */
+.school-slider__track {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 1.5rem;
+  width: max-content;
+  animation: marquee-rtl 30s linear infinite; /* default: right-to-left */
+}
+
+/* Row 1: left to right */
+.school-slider--ltr .school-slider__track {
+  animation-name: marquee-ltr;
+}
+
+/* Pause while hovered or focused */
+.school-slider:hover .school-slider__track,
+.school-slider:focus-within .school-slider__track {
+  animation-play-state: paused;
+}
+
+.school-card {
+  flex: 0 0 auto;
+  width: 250px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  user-select: none;
+}
+
+.school-card img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+}
+
+@keyframes marquee-rtl {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee-ltr {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* Reduced motion: keep the rows static */
+@media (prefers-reduced-motion: reduce) {
+  .school-slider__track {
+    animation: none;
+  }
+}

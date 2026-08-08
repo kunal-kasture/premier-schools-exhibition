@@ -1,47 +1,59 @@
 /* Design tokens */
 :root {
-  /* Fluid headline sizes that scale with the viewport */
+  /* Fluid headline sizes */
   --font-title: clamp(1.8rem, 3.5vw, 3.2rem);
   --font-subtitle: clamp(0.85rem, 1.2vw, 1rem);
 
-  /*
-    Capsule cards are sized off the viewport so all three columns fit:
-    28vw x 3 columns = 84vw, leaving room for gaps and padding.
-    They max out at 95px on wide screens.
-  */
+  /* Capsule sizing is viewport-derived so all three columns fit */
   --capsule-width: min(28vw, 5.9375rem);
 
-  /* Height stays locked to width to keep a fixed 1:1.89 aspect ratio */
+  /* Height locked to width for a fixed aspect ratio */
   --capsule-height: calc(var(--capsule-width) * 1.8947);
 
   --capsule-gap: min(2vw, 0.75rem);
   --capsule-offset: calc(var(--capsule-height) / 2);
 
-  /*
-    Distance a column travels per loop: 4 capsule heights + 4 gaps,
-    which matches the 4 cards (plus 4 duplicates) in each column.
-  */
+  /* Distance the track travels per loop (4 cards + 4 duplicates) */
   --loop-translate: calc(
     (var(--capsule-height) * 4) + (var(--capsule-gap) * 4)
   );
 }
 
 @media (min-width: 48rem) {
-  /* 768px+: switch to fixed sizes once there is enough room */
+  /* 768px+: fixed sizes once there's room */
   :root {
-    --capsule-width: 7.5rem; /* ~120px */
-    --capsule-height: calc(var(--capsule-width) * 1.8947); /* ~227px */
-    --capsule-gap: 1rem; /* ~16px */
+    --capsule-width: 7.5rem;
+    --capsule-height: calc(var(--capsule-width) * 1.8947);
+    --capsule-gap: 1rem;
     --capsule-offset: calc(var(--capsule-height) / 2);
   }
 }
 
 @media (min-width: 75rem) {
-  /* 1200px+: large desktop sizing */
+  /* 1200px+: desktop sizing */
   :root {
-    --capsule-width: 10.5rem; /* ~168px */
-    --capsule-height: 21.5rem; /* ~344px */
-    --capsule-gap: 1.25rem; /* ~20px */
+    --capsule-width: 10.5rem;
+    --capsule-height: 21.5rem;
+    --capsule-gap: 1.25rem;
+  }
+}
+
+@media (min-width: 64rem) and (max-width: 74.99rem) {
+  /* 1024-1200px: hero is narrow here, shrink capsules to fit */
+  :root {
+    --capsule-width: clamp(5.5rem, 10vw, 7.5rem);
+    --capsule-height: calc(var(--capsule-width) * 1.8947);
+    --capsule-gap: 1rem;
+    --capsule-offset: calc(var(--capsule-height) / 2);
+  }
+}
+
+@media (min-width: 64rem) and (max-width: 74.99rem) {
+  /* 1024-1200px: scale the headline text down */
+  :root {
+    --hero-title-lg: 26px;
+    --hero-title-xl: 32px;
+    --hero-title-sm: 18px;
   }
 }
 
@@ -55,24 +67,47 @@
   color: #ffffff;
   position: relative;
   overflow: hidden;
-  height: 720px;
+  height: auto;
+  min-height: 720px;
+}
+
+@media (min-width: 64rem) and (max-width: 74.99rem) {
+  /* 1024-1200px: content is shorter, trim the hero height */
+  .hero {
+    min-height: 480px;
+  }
 }
 
 /* Two-column grid: left slider + right form card */
 .hero__container {
-  max-width: 87.5rem; /* 1400px max inner width */
+  max-width: 87.5rem;
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr;
   gap: 2.5rem;
   align-items: center;
-  height: 800px;
+  height: auto;
+  padding: 2.5rem 1rem;
 }
 
 @media (min-width: 64rem) {
-  /* 1024px+: content on the left, fixed-width form on the right */
+  /* 1024px+: content left, form right (26vw keeps capsules fitting) */
   .hero__container {
-    grid-template-columns: 1fr 23.75rem;
+    grid-template-columns: 1fr min(23.75rem, 26vw);
+  }
+}
+
+@media (max-width: 63.99rem) {
+  /* Phones/tablets: stack, let the hero grow with its content */
+  .hero {
+    height: auto;
+    min-height: 100vh;
+    box-sizing: border-box;
+  }
+
+  .hero__container {
+    height: auto;
+    padding-bottom: 2rem;
   }
 }
 
@@ -83,7 +118,6 @@
   width: 100%;
 }
 
-/* Slide strip that translates horizontally when changing slides */
 .hero__slides {
   display: flex;
   transition: transform 0.4s ease-in-out;
@@ -109,10 +143,11 @@
 
 .hero__schedule {
   width: 350px;
+  max-width: 100%;
 }
 
 @media (min-width: 62rem) {
-  /* 992px+: side-by-side layout (headline left, capsules right) */
+  /* 992px+: headline left, capsules right */
   .hero__slide {
     display: grid;
     grid-template-columns: 1fr auto;
@@ -129,7 +164,7 @@
 
 /* Typography */
 .hero__title {
-  /* Gradient text: clip the gradient to the glyphs and hide the fill color */
+  /* Gradient text via background-clip */
   background: linear-gradient(180deg, #ffcc81 0%, #e9c79f 100%);
   -webkit-background-clip: text;
   background-clip: text;
@@ -151,7 +186,7 @@
   font-weight: 600;
 }
 
-/* Capsule columns (auto-scrolling school cards) */
+/* Capsule columns (auto-scrolling student cards) */
 .hero__media-grid {
   display: grid;
   grid-template-columns: repeat(3, var(--capsule-width));
@@ -159,7 +194,7 @@
   gap: var(--capsule-gap);
   width: max-content;
   max-width: 100%;
-  height: calc((var(--capsule-height) * 2) + var(--capsule-gap));
+  height: min(800px, calc((var(--capsule-height) * 2) + var(--capsule-gap)));
   overflow: hidden;
   position: relative;
   margin: 0 auto;
@@ -172,14 +207,13 @@
   height: 100%;
 }
 
-/* Each column scrolls its cards upward infinitely */
 .hero__capsule-track {
   display: flex;
   flex-direction: column;
   gap: var(--capsule-gap);
   height: max-content;
 
-  /* Anti-stutter GPU acceleration */
+  /* GPU accel to avoid stutter */
   will-change: transform;
   transform-style: preserve-3d;
   perspective: 1000px;
@@ -188,13 +222,13 @@
   animation: seamlessScrollUp 10s linear infinite;
 }
 
-/* Middle column starts staggered and pauses at the loop point to stay in sync */
+/* Middle column is staggered and pauses at the loop point to stay in sync */
 .hero__capsule-col--offset .hero__capsule-track {
   transform: translate3d(0, calc(-1 * var(--capsule-offset)), 0);
   animation: seamlessScrollUpPause 15s linear infinite; /* 10s move + 5s pause */
 }
 
-/* Freeze all columns on hover/focus so the cards are readable */
+/* Freeze on hover/focus so the cards stay readable */
 .hero__media-grid:hover .hero__capsule-track,
 .hero__media-grid:focus-within .hero__capsule-track {
   animation-play-state: paused;
@@ -203,13 +237,13 @@
 .hero__capsule-item {
   width: var(--capsule-width);
   height: var(--capsule-height);
-  border-radius: 62.5rem; /* Large pill radius keeps cards stadium-shaped */
+  border-radius: 62.5rem; /* stadium pill shape */
   overflow: hidden;
   box-sizing: border-box;
-  /* Prevents sub-pixel flickering at the edges during GPU scroll */
+  /* Avoids sub-pixel flicker during GPU scroll */
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  background-color: rgba(255, 255, 255, 0.05); /* Fallback while loading */
+  background-color: rgba(255, 255, 255, 0.05);
 }
 
 .hero__capsule-item img {
@@ -219,13 +253,11 @@
   display: block;
 }
 
-/* Enquire Now form */
+/* Enquiry form */
 .hero__form-card {
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(0.75rem);
-  -webkit-backdrop-filter: blur(
-    0.75rem
-  ); /* Safari fallback for backdrop blur */
+  -webkit-backdrop-filter: blur(0.75rem); /* Safari fallback */
   border: 1px solid rgba(255, 255, 255, 0.1);
   padding: 2rem 1.75rem;
   border-radius: 0.75rem;
@@ -234,6 +266,7 @@
   width: 100%;
   max-width: 28.125rem;
   margin: 0 auto;
+  box-sizing: border-box;
 }
 
 .hero__form-title {
@@ -243,12 +276,11 @@
   font-weight: 700;
 }
 
-.form-group {
+.hero__form-group {
   margin-bottom: 1rem;
 }
 
-/* Shared styling for every input and textarea in the form */
-.form-control {
+.hero__form-control {
   width: 100%;
   padding: 0.85rem 1rem;
   background: rgba(255, 255, 255, 0.08);
@@ -262,14 +294,15 @@
     border-color 0.2s;
 }
 
-.form-control::placeholder {
+.hero__form-control::placeholder {
   color: rgba(255, 255, 255, 0.5);
 }
 
-.form-control:focus {
-  outline: none;
+.hero__form-control:focus-visible {
   border-color: #ffb703;
   background: rgba(255, 255, 255, 0.12);
+  outline: 2px solid #ffb703;
+  outline-offset: 2px;
 }
 
 /* Submit button with a white slide-in hover layer */
@@ -277,7 +310,8 @@
   position: relative;
   display: flex;
   align-items: center;
-  width: 240px;
+  width: 100%;
+  max-width: 240px;
   height: 54px;
   padding: 0;
   border: none;
@@ -286,7 +320,7 @@
   z-index: 1;
 }
 
-/* Crisp outer white border, drawn on top of everything */
+/* White border on top; pointer-events off so it stays click-through */
 .submit-btn::after {
   content: "";
   position: absolute;
@@ -300,8 +334,7 @@
   z-index: 3;
 }
 
-/* Base canvas: purple fills the text area */
-.submit-btn-content {
+.submit-btn__content {
   position: absolute;
   top: 0;
   left: 0;
@@ -315,11 +348,11 @@
   z-index: 1;
 }
 
-/* White layer that unrolls rightward over the text on hover */
-.submit-btn-bg-slider {
+/* White layer that slides right over the text on hover */
+.submit-btn__bg-slider {
   position: absolute;
   top: 0;
-  left: 60px; /* Starts right where the icon box ends */
+  left: 60px; /* starts where the icon box ends */
   right: 0;
   bottom: 0;
   background-color: #ffffff;
@@ -329,8 +362,7 @@
   z-index: 1;
 }
 
-/* Static white icon square on the left */
-.submit-btn-icon-box {
+.submit-btn__icon-box {
   position: relative;
   display: flex;
   justify-content: center;
@@ -341,8 +373,7 @@
   z-index: 2;
 }
 
-/* Arrow wrapper for the rotate-on-hover effect */
-.submit-btn-arrow-container {
+.submit-btn__arrow {
   width: 18px;
   height: 18px;
   display: flex;
@@ -352,38 +383,37 @@
   transition: transform 0.4s ease-in-out;
 }
 
-/* "SUBMIT" label, vertically centered next to the icon */
-.submit-btn-text-box {
+.submit-btn__text {
   position: relative;
   flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #ffffff; /* White text on the purple base */
+  color: #ffffff;
   font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.8px;
   text-transform: uppercase;
   white-space: nowrap;
-  padding: 0 20px 0 0; /* Balances the space taken by the left icon box */
+  padding: 0 20px 0 0; /* balances the left icon box */
   transition: color 0.3s ease-in-out;
   z-index: 2;
 }
 
-/* --- Hover: reveal white, rotate arrow, darken label --- */
-.submit-btn:hover .submit-btn-bg-slider {
+/* Hover: white layer, arrow rotated, dark label */
+.submit-btn:hover .submit-btn__bg-slider {
   transform: scaleX(1);
 }
 
-.submit-btn:hover .submit-btn-arrow-container {
+.submit-btn:hover .submit-btn__arrow {
   transform: rotate(45deg);
 }
 
-.submit-btn:hover .submit-btn-text-box {
+.submit-btn:hover .submit-btn__text {
   color: #2a1459;
 }
 
-/* Keeps labels invisible on screen but readable by screen readers */
+/* Visually hidden but readable by screen readers */
 .visually-hidden {
   position: absolute;
   width: 0.0625rem;
@@ -395,9 +425,9 @@
   border: 0;
 }
 
-/* Infinite scroll keyframes */
+/* Scroll keyframes */
 
-/* Outer columns: constant upward scroll, 10s per loop */
+/* Outer columns: steady upward scroll (10s per loop) */
 @keyframes seamlessScrollUp {
   0% {
     transform: translate3d(0, 0, 0);
@@ -407,14 +437,14 @@
   }
 }
 
-/* Middle column: moves with the outer columns (10s), then pauses (5s) */
+/* Middle column: move (10s) then pause (5s) */
 @keyframes seamlessScrollUpPause {
   0% {
     transform: translate3d(0, calc(-1 * var(--capsule-offset)), 0);
-    animation-timing-function: ease-in; /* Eases in from the initial stagger */
+    animation-timing-function: ease-in;
   }
   10% {
-    /* Ramp up to match the outer columns' speed */
+    /* ramp up to match the outer columns' speed */
     transform: translate3d(
       0,
       calc((-0.15 * var(--loop-translate)) - var(--capsule-offset)),
@@ -423,7 +453,7 @@
     animation-timing-function: linear;
   }
   60% {
-    /* Ease out just before stopping */
+    /* ease out just before stopping */
     transform: translate3d(
       0,
       calc((-0.9 * var(--loop-translate)) - var(--capsule-offset)),
@@ -432,7 +462,7 @@
     animation-timing-function: ease-out;
   }
   66.66% {
-    /* Stop exactly at the 10s mark, aligned to one full loop */
+    /* stop at a full-loop boundary, aligned to the 10s mark */
     transform: translate3d(
       0,
       calc((-1 * var(--loop-translate)) - var(--capsule-offset)),
@@ -440,7 +470,7 @@
     );
   }
   100% {
-    /* Hold the pause for the remaining 5s */
+    /* hold the pause for the remaining 5s */
     transform: translate3d(
       0,
       calc((-1 * var(--loop-translate)) - var(--capsule-offset)),
@@ -449,10 +479,10 @@
   }
 }
 
-/* Respect users who prefer reduced motion */
+/* Reduced motion: slow the scroll instead of stopping it */
 @media (prefers-reduced-motion: reduce) {
   .hero__capsule-track,
   .hero__capsule-col--offset .hero__capsule-track {
-    animation: none;
+    animation-duration: 45s;
   }
 }

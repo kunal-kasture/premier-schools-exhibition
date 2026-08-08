@@ -1,8 +1,7 @@
-/* Navigation bar pinned to the top of the page */
+/* Sticky header; turns gradient once scrolled (see header.js) */
 .header {
-  position: fixed;
+  position: sticky;
   top: 0;
-  left: 0;
   width: 100%;
   z-index: 1000;
   background-color: #ffffff;
@@ -10,6 +9,12 @@
     background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
     box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: visible;
+}
+
+/* Scrolled: pinned header adopts the hero gradient + shadow */
+.header--scrolled {
+  background: linear-gradient(89.72deg, #000e38 0.22%, #3f186a 52.52%);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
 }
 
 /* Fixed-height bar that anchors the absolutely positioned children */
@@ -22,7 +27,6 @@
   overflow: visible;
 }
 
-/* Brand logo pinned to the top-left corner of the bar */
 .header__logo-img {
   display: block;
   width: 201px;
@@ -34,7 +38,13 @@
   left: 0;
 }
 
-/* Register button pinned to the right side of the bar */
+/* Shrink the logo to fit the pinned header */
+.header--scrolled .header__logo-img {
+  height: 99px;
+  width: auto;
+  padding-top: 0;
+}
+
 .register-btn {
   position: absolute;
   top: 19px;
@@ -49,7 +59,7 @@
   z-index: 1;
 }
 
-/* Draws the crisp navy border around the button */
+/* Navy border drawn with an inset shadow so it doesn't capture clicks */
 .register-btn::after {
   content: "";
   position: absolute;
@@ -63,8 +73,7 @@
   z-index: 2;
 }
 
-/* Inner layout: gradient icon square on the left, label on the right */
-.btn-content {
+.register-btn__content {
   position: absolute;
   top: 0;
   left: 0;
@@ -78,8 +87,8 @@
   -webkit-mask-image: -webkit-radial-gradient(white, black);
 }
 
-/* Hidden gradient layer that slides in from the left on hover */
-.bg-slider {
+/* Gradient layer that slides in from the left on hover */
+.register-btn__bg-slider {
   position: absolute;
   top: 0;
   left: 0;
@@ -92,8 +101,7 @@
   z-index: 1;
 }
 
-/* Static navy square that holds the arrow icon */
-.icon-box {
+.register-btn__icon-box {
   position: relative;
   display: flex;
   justify-content: center;
@@ -105,8 +113,7 @@
   z-index: 2;
 }
 
-/* Keeps the arrow icon centered inside its square */
-.arrow-container {
+.register-btn__arrow {
   width: 18px;
   height: 18px;
   display: flex;
@@ -116,8 +123,7 @@
   transition: transform 0.4s linear;
 }
 
-/* "Register Now" label to the right of the icon square */
-.text-box {
+.register-btn__text {
   position: relative;
   flex: 1;
   display: flex;
@@ -133,19 +139,61 @@
   z-index: 2;
 }
 
-/* Hover state: reveal the gradient, rotate the arrow, and flip the label to white */
-.register-btn:hover .bg-slider {
+/* Hover: slide the gradient in, rotate the arrow, white label */
+.register-btn:hover .register-btn__bg-slider {
   transform: scaleX(1);
 }
 
-.register-btn:hover .icon-box {
+.register-btn:hover .register-btn__icon-box {
   background: transparent;
 }
 
-.register-btn:hover .arrow-container {
+.register-btn:hover .register-btn__arrow {
   transform: rotate(45deg);
 }
 
-.register-btn:hover .text-box {
+.register-btn:hover .register-btn__text {
   color: #ffffff;
+}
+
+/* Scrolled: match the submit button (purple body, white icon square) */
+.header--scrolled .register-btn .register-btn__content {
+  background-color: #3f186a;
+}
+
+.header--scrolled .register-btn::after {
+  box-shadow: inset 0 0 0 1.5px #ffffff;
+}
+
+.header--scrolled .register-btn .register-btn__icon-box {
+  background: #ffffff;
+}
+
+/* White arrow in the SVG, so invert it on the white square */
+.header--scrolled .register-btn .register-btn__arrow img {
+  filter: invert(1);
+}
+
+.header--scrolled .register-btn .register-btn__text {
+  color: #ffffff;
+}
+
+/* Scrolled hover: white layer, dark label */
+.header--scrolled .register-btn:hover .register-btn__bg-slider {
+  background: #ffffff;
+}
+
+.header--scrolled .register-btn:hover .register-btn__text {
+  color: #2a1459;
+}
+
+/* Small screens: keep the button fully in the viewport */
+@media (max-width: 30rem) {
+  .register-btn {
+    right: 1rem;
+  }
+
+  .header__logo-img {
+    padding-left: 1rem;
+  }
 }

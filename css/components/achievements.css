@@ -1,4 +1,9 @@
-.achivements {
+/* Achievements strip below the hero */
+.achievements {
+  padding: 1rem;
+}
+
+.achievements__list {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -7,8 +12,24 @@
   width: 100%;
 }
 
-.achivements img {
+.achievements__list img {
   padding: 20px;
   margin-top: 50px;
   margin-bottom: 50px;
+  max-width: 100%;
+  height: auto;
+  box-sizing: border-box;
+}
+
+@media (min-width: 64rem) {
+  /* 1024px+: tighten the badges so the layout doesn't leave big empty bands */
+  .achievements {
+    padding: 0.5rem 1rem;
+  }
+
+  .achievements__list img {
+    margin-top: 8px;
+    margin-bottom: 8px;
+    padding: 12px;
+  }
 }

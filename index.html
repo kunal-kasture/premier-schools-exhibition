@@ -5,54 +5,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Premier Schools Exhibition (PSE)</title>
     <link
-      href="https://googleapis.com/css2?family=Open+Sans:wght@700&display=swap"
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap"
     />
     <link rel="stylesheet" href="./css/main.css" />
   </head>
   <body>
-    <!-- Sticky header with brand logo and register button -->
+    <!-- Skip link for keyboard users -->
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <!-- Header -->
     <header class="header" id="header">
-      <div
-        class="header__container"
-        aria-label="Premier Schools Exhibition Home"
-      >
-        <!-- Logo -->
+      <div class="header__container">
         <img
           src="./assets/logo.svg"
           alt="Premier Schools Exhibition Logo"
           class="header__logo-img"
         />
-        <!-- Register Button -->
         <nav class="header__nav" aria-label="Main Navigation">
-          <button class="register-btn">
-            <div class="btn-content">
-              <div class="bg-slider"></div>
-              <div class="icon-box">
-                <div class="arrow-container">
+          <button class="register-btn" type="button" aria-label="Register Now">
+            <span class="register-btn__content">
+              <span class="register-btn__bg-slider"></span>
+              <span class="register-btn__icon-box">
+                <span class="register-btn__arrow">
                   <img src="./assets/arrow.svg" alt="arrow" />
-                </div>
-              </div>
-              <div class="text-box">Register Now</div>
-            </div>
+                </span>
+              </span>
+              <span class="register-btn__text">Register Now</span>
+            </span>
           </button>
         </nav>
       </div>
     </header>
 
-    <!-- Hero landing: headline, animated capsule columns, and enquiry form -->
-    <main id="main-content">
+    <!-- Hero -->
+    <main id="main-content" tabindex="-1">
       <section class="hero" aria-label="Featured Schools and Events">
         <div class="hero__container">
-          <!-- Left column: headline + auto-scrolling capsule columns -->
           <div
             class="hero__slider"
             id="hero-slider"
             role="region"
             aria-roledescription="carousel"
             aria-label="Highlighted Events"
+            tabindex="0"
           >
             <div class="hero__slides" id="hero-slides">
-              <article
+              <div
                 class="hero__slide is-active"
                 role="group"
                 aria-roledescription="slide"
@@ -60,13 +59,19 @@
               >
                 <div class="hero__content">
                   <h1 class="hero__title">
-                    <span style="font-size: 40px">Discover Gurugram's</span>
-                    <br />
-                    <span style="font-size: 50px">Top 30+ schools</span>
-                    <span class="hero__subtitle" style="font-size: 30px"
-                      >ALL IN ONE PLACE</span
+                    <span style="font-size: var(--hero-title-lg, 40px)"
+                      >Discover Gurugram's</span
                     >
                     <br />
+                    <span style="font-size: var(--hero-title-xl, 50px)"
+                      >Top 30+ schools</span
+                    >
+                    <br />
+                    <span
+                      class="hero__subtitle"
+                      style="font-size: var(--hero-title-sm, 30px)"
+                      >ALL IN ONE PLACE</span
+                    >
                   </h1>
                   <div>
                     <img
@@ -77,7 +82,6 @@
                   </div>
                 </div>
 
-                <!-- Media Grid / Column Slider -->
                 <div class="hero__media-grid" aria-hidden="true">
                   <!-- Column 1 -->
                   <div class="hero__capsule-col">
@@ -107,7 +111,7 @@
                         />
                       </div>
 
-                      <!-- Duplicated cards so the column loops seamlessly -->
+                      <!-- Duplicate cards for a seamless loop -->
                       <div class="hero__capsule-item">
                         <img
                           src="./assets/student1.svg"
@@ -159,11 +163,11 @@
                       <div class="hero__capsule-item">
                         <img
                           src="./assets/student11.svg"
-                          alt="a boy is holding a bat like he is about hit the ball"
+                          alt="a boy is holding a bat like he is about to hit the ball"
                         />
                       </div>
 
-                      <!-- Duplicated cards so the column loops seamlessly -->
+                      <!-- Duplicate cards for a seamless loop -->
                       <div class="hero__capsule-item">
                         <img
                           src="./assets/student2.svg"
@@ -185,7 +189,7 @@
                       <div class="hero__capsule-item">
                         <img
                           src="./assets/student11.svg"
-                          alt="a boy is holding a bat like he is about hit the ball"
+                          alt="a boy is holding a bat like he is about to hit the ball"
                         />
                       </div>
                     </div>
@@ -197,7 +201,7 @@
                       <div class="hero__capsule-item">
                         <img
                           src="./assets/student3.svg"
-                          alt="boy is is playing football"
+                          alt="boy is playing football"
                         />
                       </div>
                       <div class="hero__capsule-item">
@@ -209,21 +213,21 @@
                       <div class="hero__capsule-item">
                         <img
                           src="./assets/student9.svg"
-                          alt="girl is siting while holding the cycle and its peddal with other hand"
+                          alt="girl is sitting while holding the cycle and its pedal with her other hand"
                         />
                       </div>
                       <div class="hero__capsule-item">
                         <img
                           src="./assets/student12.svg"
-                          alt="2 boys together looking at microscope one is holding it and otehr watching it besides him"
+                          alt="2 boys together looking at a microscope, one holding it and the other watching beside him"
                         />
                       </div>
 
-                      <!-- Duplicated cards so the column loops seamlessly -->
+                      <!-- Duplicate cards for a seamless loop -->
                       <div class="hero__capsule-item">
                         <img
                           src="./assets/student3.svg"
-                          alt="boy is is playing football"
+                          alt="boy is playing football"
                         />
                       </div>
                       <div class="hero__capsule-item">
@@ -235,29 +239,29 @@
                       <div class="hero__capsule-item">
                         <img
                           src="./assets/student9.svg"
-                          alt="girl is siting while holding the cycle and its peddal with other hand"
+                          alt="girl is sitting while holding the cycle and its pedal with her other hand"
                         />
                       </div>
                       <div class="hero__capsule-item">
                         <img
                           src="./assets/student12.svg"
-                          alt="2 boys together looking at microscope one is holding it and otehr watching it besides him"
+                          alt="2 boys together looking at a microscope, one holding it and the other watching beside him"
                         />
                       </div>
                     </div>
                   </div>
                 </div>
-              </article>
+              </div>
             </div>
           </div>
 
-          <!-- Right column: enquiry form card -->
+          <!-- Enquiry form -->
           <div class="hero__form-card" id="register">
             <h2 class="hero__form-title" id="enquiry-form-heading">
               Enquire Now
             </h2>
             <form class="enquiry-form" aria-labelledby="enquiry-form-heading">
-              <div class="form-group">
+              <div class="hero__form-group">
                 <label for="parent-name" class="visually-hidden"
                   >Parent's Name</label
                 >
@@ -265,54 +269,54 @@
                   type="text"
                   id="parent-name"
                   name="parent-name"
-                  class="form-control"
+                  class="hero__form-control"
                   placeholder="Parent's Name"
                   required
                 />
               </div>
 
-              <div class="form-group">
+              <div class="hero__form-group">
                 <label for="phone" class="visually-hidden">Phone number</label>
                 <input
                   type="tel"
                   id="phone"
                   name="phone"
-                  class="form-control"
+                  class="hero__form-control"
                   placeholder="Phone number"
                   required
                 />
               </div>
 
-              <div class="form-group">
+              <div class="hero__form-group">
                 <label for="grade" class="visually-hidden"
                   >Which grade are you looking for?</label
                 >
                 <textarea
-                  type="textarea"
                   id="grade"
                   name="grade"
-                  class="form-control"
+                  class="hero__form-control"
                   placeholder="Which grade are you looking for?"
                 ></textarea>
               </div>
 
-              <button class="submit-btn">
-                <div class="submit-btn-content">
-                  <div class="submit-btn-bg-slider"></div>
-                  <div class="submit-btn-icon-box">
-                    <div class="submit-btn-arrow-container">
-                      <img src="./assets/arrow2.svg" alt="" />
-                    </div>
-                  </div>
-                  <div class="submit-btn-text-box">SUBMIT</div>
-                </div>
+              <button class="submit-btn" type="submit" aria-label="Submit">
+                <span class="submit-btn__content">
+                  <span class="submit-btn__bg-slider"></span>
+                  <span class="submit-btn__icon-box">
+                    <span class="submit-btn__arrow">
+                      <img src="./assets/arrow2.svg" alt="arrow" />
+                    </span>
+                  </span>
+                  <span class="submit-btn__text">SUBMIT</span>
+                </span>
               </button>
             </form>
           </div>
         </div>
       </section>
-      <section2>
-        <div class="achivements">
+      <!-- Achievements -->
+      <section class="achievements" aria-label="Achievements">
+        <div class="achievements__list">
           <img src="./assets/achievement1.svg" alt="Trusted by 1 Million+" />
           <img src="./assets/achievement2.svg" alt="22+ Years of Legacy" />
           <img
@@ -324,7 +328,238 @@
             alt="17 Cities Across the Globe"
           />
         </div>
-      </section2>
+      </section>
+      <!-- Participating schools -->
+      <section
+        class="participating-schools"
+        aria-labelledby="participating-schools-title"
+      >
+        <div class="participating-schools__header">
+          <h2
+            class="participating-schools__title"
+            id="participating-schools-title"
+          >
+            Participating Schools
+          </h2>
+          <button
+            class="participating-schools__pause-btn"
+            type="button"
+            aria-pressed="false"
+          >
+            Pause
+          </button>
+        </div>
+
+        <!-- Row 1: left to right -->
+        <div
+          class="school-slider school-slider--ltr"
+          role="region"
+          aria-label="Participating school logos"
+          tabindex="0"
+        >
+          <div class="school-slider__track">
+            <div class="school-card">
+              <img
+                src="./assets/school1.svg"
+                alt="Harrow International School Bengaluru"
+              />
+            </div>
+            <div class="school-card">
+              <img
+                src="./assets/school2.svg"
+                alt="Shrewsbury International School Bangkok"
+              />
+            </div>
+            <div class="school-card">
+              <img
+                src="./assets/school3.svg"
+                alt="King's College India Rohtak"
+              />
+            </div>
+            <div class="school-card">
+              <img src="./assets/school4.svg" alt="Woodstock School 1854" />
+            </div>
+            <div class="school-card">
+              <img
+                src="./assets/school5.svg"
+                alt="The Aga Khan Academy Mombasa"
+              />
+            </div>
+            <div class="school-card">
+              <img src="./assets/school6.svg" alt="TISB - Vita Eadem Studia" />
+            </div>
+            <div class="school-card">
+              <img
+                src="./assets/school7.svg"
+                alt="Dharav High School Gurugram"
+              />
+            </div>
+            <div class="school-card">
+              <img src="./assets/school8.svg" alt="The Blue Bells School" />
+            </div>
+            <div class="school-card">
+              <img
+                src="./assets/school9.svg"
+                alt="Delhi Public School Gurugram"
+              />
+            </div>
+
+            <!-- Duplicate cards for a seamless loop -->
+            <div class="school-card" aria-hidden="true">
+              <img
+                src="./assets/school1.svg"
+                alt="Harrow International School Bengaluru"
+              />
+            </div>
+            <div class="school-card" aria-hidden="true">
+              <img
+                src="./assets/school2.svg"
+                alt="Shrewsbury International School Bangkok"
+              />
+            </div>
+            <div class="school-card" aria-hidden="true">
+              <img
+                src="./assets/school3.svg"
+                alt="King's College India Rohtak"
+              />
+            </div>
+            <div class="school-card" aria-hidden="true">
+              <img src="./assets/school4.svg" alt="Woodstock School 1854" />
+            </div>
+            <div class="school-card" aria-hidden="true">
+              <img
+                src="./assets/school5.svg"
+                alt="The Aga Khan Academy Mombasa"
+              />
+            </div>
+            <div class="school-card" aria-hidden="true">
+              <img src="./assets/school6.svg" alt="TISB - Vita Eadem Studia" />
+            </div>
+            <div class="school-card" aria-hidden="true">
+              <img
+                src="./assets/school7.svg"
+                alt="Dharav High School Gurugram"
+              />
+            </div>
+            <div class="school-card" aria-hidden="true">
+              <img src="./assets/school8.svg" alt="The Blue Bells School" />
+            </div>
+            <div class="school-card" aria-hidden="true">
+              <img
+                src="./assets/school9.svg"
+                alt="Delhi Public School Gurugram"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Row 2: right to left (decorative duplicate) -->
+        <div
+          class="school-slider school-slider--rtl"
+          aria-hidden="true"
+          tabindex="-1"
+        >
+          <div class="school-slider__track">
+            <div class="school-card">
+              <img
+                src="./assets/school1.svg"
+                alt="Harrow International School Bengaluru"
+              />
+            </div>
+            <div class="school-card">
+              <img
+                src="./assets/school2.svg"
+                alt="Shrewsbury International School Bangkok"
+              />
+            </div>
+            <div class="school-card">
+              <img
+                src="./assets/school3.svg"
+                alt="King's College India Rohtak"
+              />
+            </div>
+            <div class="school-card">
+              <img src="./assets/school4.svg" alt="Woodstock School 1854" />
+            </div>
+            <div class="school-card">
+              <img
+                src="./assets/school5.svg"
+                alt="The Aga Khan Academy Mombasa"
+              />
+            </div>
+            <div class="school-card">
+              <img src="./assets/school6.svg" alt="TISB - Vita Eadem Studia" />
+            </div>
+            <div class="school-card">
+              <img
+                src="./assets/school7.svg"
+                alt="Dharav High School Gurugram"
+              />
+            </div>
+            <div class="school-card">
+              <img src="./assets/school8.svg" alt="The Blue Bells School" />
+            </div>
+            <div class="school-card">
+              <img
+                src="./assets/school9.svg"
+                alt="Delhi Public School Gurugram"
+              />
+            </div>
+
+            <!-- Duplicate cards for a seamless loop -->
+            <div class="school-card" aria-hidden="true">
+              <img
+                src="./assets/school1.svg"
+                alt="Harrow International School Bengaluru"
+              />
+            </div>
+            <div class="school-card" aria-hidden="true">
+              <img
+                src="./assets/school2.svg"
+                alt="Shrewsbury International School Bangkok"
+              />
+            </div>
+            <div class="school-card" aria-hidden="true">
+              <img
+                src="./assets/school3.svg"
+                alt="King's College India Rohtak"
+              />
+            </div>
+            <div class="school-card" aria-hidden="true">
+              <img src="./assets/school4.svg" alt="Woodstock School 1854" />
+            </div>
+            <div class="school-card" aria-hidden="true">
+              <img
+                src="./assets/school5.svg"
+                alt="The Aga Khan Academy Mombasa"
+              />
+            </div>
+            <div class="school-card" aria-hidden="true">
+              <img src="./assets/school6.svg" alt="TISB - Vita Eadem Studia" />
+            </div>
+            <div class="school-card" aria-hidden="true">
+              <img
+                src="./assets/school7.svg"
+                alt="Dharav High School Gurugram"
+              />
+            </div>
+            <div class="school-card" aria-hidden="true">
+              <img src="./assets/school8.svg" alt="The Blue Bells School" />
+            </div>
+            <div class="school-card" aria-hidden="true">
+              <img
+                src="./assets/school9.svg"
+                alt="Delhi Public School Gurugram"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
+
+    <!-- Scripts deferred so they work from file:// -->
+    <script defer src="./js/components/header.js"></script>
+    <script defer src="./js/components/hero.js"></script>
+    <script defer src="./js/main.js"></script>
   </body>
 </html>

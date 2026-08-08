@@ -1,6 +1,5 @@
-// Toggles a "scrolled" state class on the header once the page has been
-// scrolled past a small threshold, ready for any scrolled styling.
-document.addEventListener("DOMContentLoaded", () => {
+// Toggle a "scrolled" class on the header past a small scroll threshold.
+function initStickyHeader() {
   const header = document.getElementById("header");
 
   if (header) {
@@ -12,4 +11,4 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
-});
+}

@@ -1,10 +1,8 @@
-// Auto-playing hero slider: cycles through slides on a timer and supports
-// prev/next buttons, a pause/play toggle, and touch swipes.
-document.addEventListener("DOMContentLoaded", () => {
+// Auto-playing hero slider with arrow-key, touch, and pause support.
+function initHeroSlider() {
   const slides = document.querySelectorAll(".hero__slide");
   const slidesContainer = document.getElementById("hero-slides");
-  // Controls are optional (guarded with ?.) so the slider still works
-  // even when these buttons aren't in the markup.
+  // Controls are optional, so guard against missing buttons.
   const prevBtn = document.querySelector(".hero__btn--prev");
   const nextBtn = document.querySelector(".hero__btn--next");
   const pauseBtn = document.querySelector(".hero__btn--pause");
@@ -14,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let isPlaying = true;
   let slideInterval = null;
 
-  // Moves to the requested slide and keeps active/aria state in sync
+  // Move to a slide and keep active/aria state in sync
   function updateSlide(index) {
     currentSlide = (index + slides.length) % slides.length;
     slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
@@ -33,20 +31,19 @@ document.addEventListener("DOMContentLoaded", () => {
     updateSlide(currentSlide - 1);
   }
 
-  // Starts the slideshow advancing every 5 seconds
+  // Start auto-advancing every 5s
   function startAutoPlay() {
     if (!slideInterval) {
       slideInterval = setInterval(nextSlide, 5000);
     }
   }
 
-  // Stops the timer, keeping the current slide visible
   function stopAutoPlay() {
     clearInterval(slideInterval);
     slideInterval = null;
   }
 
-  // Pause/play button toggle, updating its aria state and icon
+  // Pause/play toggle, keeping aria state updated
   pauseBtn?.addEventListener("click", () => {
     if (isPlaying) {
       stopAutoPlay();
@@ -62,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
     isPlaying = !isPlaying;
   });
 
-  // Manual navigation restarts the auto-play timer
+  // Manual nav restarts the auto-play timer
   prevBtn?.addEventListener("click", () => {
     prevSlide();
     if (isPlaying) startAutoPlay();
@@ -73,7 +70,20 @@ document.addEventListener("DOMContentLoaded", () => {
     if (isPlaying) startAutoPlay();
   });
 
-  // Pause while hovering or focusing the slider, resume afterwards
+  // Arrow keys navigate slides for keyboard users
+  heroSlider?.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowLeft") {
+      e.preventDefault();
+      prevSlide();
+      if (isPlaying) startAutoPlay();
+    } else if (e.key === "ArrowRight") {
+      e.preventDefault();
+      nextSlide();
+      if (isPlaying) startAutoPlay();
+    }
+  });
+
+  // Pause while hovered/focused, resume after
   heroSlider?.addEventListener("mouseenter", stopAutoPlay);
   heroSlider?.addEventListener("mouseleave", () => {
     if (isPlaying) startAutoPlay();
@@ -83,7 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (isPlaying) startAutoPlay();
   });
 
-  // Swipe left/right on touch devices to change slides
+  // Swipe support for touch
   let startX = 0;
   heroSlider?.addEventListener(
     "touchstart",
@@ -104,4 +114,4 @@ document.addEventListener("DOMContentLoaded", () => {
   );
 
   startAutoPlay();
-});
+}
