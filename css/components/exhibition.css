@@ -1,0 +1,179 @@
+/* D-shape bg, clipped half-ellipse so no rectangle */
+.exhibition {
+  position: relative;
+  z-index: 0;
+  padding: 4rem 2rem 2rem;
+  min-height: 0;
+}
+
+.exhibition::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(360deg, #000e38 0%, #3f186a 100%);
+  clip-path: ellipse(100% 100% at 50% 0%);
+  pointer-events: none;
+}
+
+.exhibition__title {
+  margin: 0;
+  text-align: center;
+  font-size: 48px;
+  font-weight: 600;
+  font-style: normal;
+  color: #ffffff;
+}
+
+/* 3 cards (417px) + 2 gaps (30px) */
+.exhibition__slider {
+  max-width: 1311px;
+  margin: 3rem auto 0;
+}
+
+/* snap-scroll, scrollbar hidden */
+.exhibition__track {
+  display: flex;
+  gap: 30px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.exhibition__track::-webkit-scrollbar {
+  display: none;
+}
+
+/* card keeps 417x380 via aspect-ratio */
+.exhibition__card {
+  flex: 0 0 417px;
+  aspect-ratio: 417 / 380;
+  border-radius: 17.36px;
+  overflow: hidden;
+  scroll-snap-align: start;
+}
+
+.exhibition__card img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* arrows+dots on one line, pause wraps below */
+.exhibition__controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+.exhibition__arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  background: transparent;
+  color: #ffffff;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.exhibition__arrow svg {
+  width: 18px;
+  height: 18px;
+}
+
+.exhibition__arrow:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.exhibition__arrow:active {
+  background: #ffffff;
+  color: transparent;
+  border-color: #ffffff;
+}
+
+.exhibition__arrow:focus-visible {
+  outline: 2px solid #ffb703;
+  outline-offset: 2px;
+}
+
+/* pause on its own centered line */
+.exhibition__pause-btn {
+  flex: 1 0 100%;
+  padding: 0;
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  color: #ffffff;
+  text-align: center;
+  cursor: pointer;
+}
+
+.exhibition__pause-btn:focus-visible {
+  outline: 2px solid #ffb703;
+  outline-offset: 2px;
+}
+
+.exhibition__dots {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* active dot white + bigger */
+.exhibition__dot {
+  width: 10px;
+  height: 10px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: #c9c4d8;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.exhibition__dot--active {
+  background: #ffffff;
+  transform: scale(1.25);
+}
+
+/* tablets */
+@media (max-width: 64rem) {
+  .exhibition__title {
+    font-size: 36px;
+  }
+
+  .exhibition__card {
+    flex: 0 0 340px;
+  }
+}
+
+/* phones */
+@media (max-width: 30rem) {
+  .exhibition {
+    padding: 4rem 1.5rem;
+  }
+
+  .exhibition__title {
+    font-size: 26px;
+  }
+
+  .exhibition__card {
+    flex: 0 0 280px;
+  }
+}
