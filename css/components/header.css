@@ -1,16 +1,18 @@
+/* Navigation bar pinned to the top of the page */
 .header {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 1000;
-  background-color: rgba(255, 255, 255, 1);
+  background-color: #ffffff;
   transition:
     background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
     box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: visible;
 }
 
+/* Fixed-height bar that anchors the absolutely positioned children */
 .header__container {
   display: flex;
   justify-content: space-between;
@@ -20,6 +22,7 @@
   overflow: visible;
 }
 
+/* Brand logo pinned to the top-left corner of the bar */
 .header__logo-img {
   display: block;
   width: 201px;
@@ -31,90 +34,7 @@
   left: 0;
 }
 
-.header__nav {
-  margin-left: auto;
-}
-
-.header__btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  background-color: #ffffff;
-  color: #0b0730;
-  padding: 4px 16px 4px 4px;
-  border: 1px solid #0b0730;
-  border-radius: 4px;
-  text-decoration: none;
-  cursor: pointer;
-  transition:
-    background-color 0.25s ease,
-    color 0.25s ease,
-    border-color 0.25s ease;
-}
-
-.header__btn-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  background-color: #0b0730;
-  color: #ffffff;
-  border-radius: 4px;
-  transition:
-    background-color 0.25s ease,
-    color 0.25s ease;
-}
-
-.header__btn-arrow {
-  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.header__btn:hover,
-.header__btn:focus-visible,
-.header__btn--active {
-  background-color: #0b0730;
-  color: #ffffff;
-  border-color: #0b0730;
-  outline: none;
-}
-
-.header__btn:hover .header__btn-icon,
-.header__btn:focus-visible .header__btn-icon,
-.header__btn--active .header__btn-icon {
-  background-color: #ffffff;
-  color: #0b0730;
-}
-
-.header__btn:hover .header__btn-arrow,
-.header__btn:focus-visible .header__btn-arrow,
-.header__btn--active .header__btn-arrow {
-  transform: translate(2px, -2px);
-}
-
-header--scrolled {
-  background-color: #0b0730;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
-}
-
-.header--scrolled .header__logo-link {
-  position: relative;
-  top: auto;
-  left: auto;
-  transform: translateY(0);
-}
-
-.header--scrolled .header__btn {
-  background-color: transparent;
-  color: #ffffff;
-  border-color: #ffffff;
-}
-
-.header--scrolled .header__btn-icon {
-  background-color: #ffffff;
-  color: #0b0730;
-}
-
+/* Register button pinned to the right side of the bar */
 .register-btn {
   position: absolute;
   top: 19px;
@@ -129,6 +49,7 @@ header--scrolled {
   z-index: 1;
 }
 
+/* Draws the crisp navy border around the button */
 .register-btn::after {
   content: "";
   position: absolute;
@@ -142,6 +63,7 @@ header--scrolled {
   z-index: 2;
 }
 
+/* Inner layout: gradient icon square on the left, label on the right */
 .btn-content {
   position: absolute;
   top: 0;
@@ -156,6 +78,7 @@ header--scrolled {
   -webkit-mask-image: -webkit-radial-gradient(white, black);
 }
 
+/* Hidden gradient layer that slides in from the left on hover */
 .bg-slider {
   position: absolute;
   top: 0;
@@ -165,10 +88,11 @@ header--scrolled {
   background: linear-gradient(270deg, #000e38 0%, #3f186a 100%);
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 0.8s linear;
+  transition: transform 0.4s linear;
   z-index: 1;
 }
 
+/* Static navy square that holds the arrow icon */
 .icon-box {
   position: relative;
   display: flex;
@@ -177,10 +101,11 @@ header--scrolled {
   width: 60px;
   height: 100%;
   background: linear-gradient(270deg, #000e38 0%, #3f186a 100%);
-  transition: opacity 0.8s linear;
+  transition: opacity 0.4s linear;
   z-index: 2;
 }
 
+/* Keeps the arrow icon centered inside its square */
 .arrow-container {
   width: 18px;
   height: 18px;
@@ -188,15 +113,10 @@ header--scrolled {
   align-items: center;
   justify-content: center;
   transform: rotate(0deg);
-  transition: transform 0.8s linear;
+  transition: transform 0.4s linear;
 }
 
-.arrow-container svg {
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
+/* "Register Now" label to the right of the icon square */
 .text-box {
   position: relative;
   flex: 1;
@@ -206,7 +126,6 @@ header--scrolled {
   color: #000e38;
   font-size: 14px;
   font-weight: 700;
-  font-weight: bold;
   height: 19px;
   width: 105px;
   text-transform: uppercase;
@@ -214,6 +133,7 @@ header--scrolled {
   z-index: 2;
 }
 
+/* Hover state: reveal the gradient, rotate the arrow, and flip the label to white */
 .register-btn:hover .bg-slider {
   transform: scaleX(1);
 }

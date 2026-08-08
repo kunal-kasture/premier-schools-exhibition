@@ -1,13 +1,8 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const header = document.getElementById("header");
+// Entry point: wire up page behaviours once the DOM is ready.
+import { initStickyHeader } from "./components/header.js";
+import { initHeroSlider } from "./components/hero.js";
 
-  if (header) {
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > 40) {
-        header.classList.add("header--scrolled");
-      } else {
-        header.classList.remove("header--scrolled");
-      }
-    });
-  }
+document.addEventListener("DOMContentLoaded", () => {
+  initStickyHeader();
+  initHeroSlider();
 });

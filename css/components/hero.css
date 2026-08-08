@@ -1,0 +1,458 @@
+/* Design tokens */
+:root {
+  /* Fluid headline sizes that scale with the viewport */
+  --font-title: clamp(1.8rem, 3.5vw, 3.2rem);
+  --font-subtitle: clamp(0.85rem, 1.2vw, 1rem);
+
+  /*
+    Capsule cards are sized off the viewport so all three columns fit:
+    28vw x 3 columns = 84vw, leaving room for gaps and padding.
+    They max out at 95px on wide screens.
+  */
+  --capsule-width: min(28vw, 5.9375rem);
+
+  /* Height stays locked to width to keep a fixed 1:1.89 aspect ratio */
+  --capsule-height: calc(var(--capsule-width) * 1.8947);
+
+  --capsule-gap: min(2vw, 0.75rem);
+  --capsule-offset: calc(var(--capsule-height) / 2);
+
+  /*
+    Distance a column travels per loop: 4 capsule heights + 4 gaps,
+    which matches the 4 cards (plus 4 duplicates) in each column.
+  */
+  --loop-translate: calc(
+    (var(--capsule-height) * 4) + (var(--capsule-gap) * 4)
+  );
+}
+
+@media (min-width: 48rem) {
+  /* 768px+: switch to fixed sizes once there is enough room */
+  :root {
+    --capsule-width: 7.5rem; /* ~120px */
+    --capsule-height: calc(var(--capsule-width) * 1.8947); /* ~227px */
+    --capsule-gap: 1rem; /* ~16px */
+    --capsule-offset: calc(var(--capsule-height) / 2);
+  }
+}
+
+@media (min-width: 75rem) {
+  /* 1200px+: large desktop sizing */
+  :root {
+    --capsule-width: 10.5rem; /* ~168px */
+    --capsule-height: 21.5rem; /* ~344px */
+    --capsule-gap: 1.25rem; /* ~20px */
+  }
+}
+
+#main-content {
+  width: 100%;
+}
+
+/* Hero section */
+.hero {
+  background: linear-gradient(89.72deg, #000e38 0.22%, #3f186a 52.52%);
+  color: #ffffff;
+  position: relative;
+  overflow: hidden;
+  height: 720px;
+}
+
+/* Two-column grid: left slider + right form card */
+.hero__container {
+  max-width: 87.5rem; /* 1400px max inner width */
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  align-items: center;
+  height: 800px;
+}
+
+@media (min-width: 64rem) {
+  /* 1024px+: content on the left, fixed-width form on the right */
+  .hero__container {
+    grid-template-columns: 1fr 23.75rem;
+  }
+}
+
+/* Slide content */
+.hero__slider {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+/* Slide strip that translates horizontally when changing slides */
+.hero__slides {
+  display: flex;
+  transition: transform 0.4s ease-in-out;
+  width: 100%;
+}
+
+.hero__slide {
+  min-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.hero__content {
+  order: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+}
+
+.hero__schedule {
+  width: 350px;
+}
+
+@media (min-width: 62rem) {
+  /* 992px+: side-by-side layout (headline left, capsules right) */
+  .hero__slide {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 2.5rem;
+    align-items: center;
+  }
+
+  .hero__content {
+    order: 1;
+    align-items: flex-start;
+    text-align: left;
+  }
+}
+
+/* Typography */
+.hero__title {
+  /* Gradient text: clip the gradient to the glyphs and hide the fill color */
+  background: linear-gradient(180deg, #ffcc81 0%, #e9c79f 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  font-size: var(--font-title);
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+  margin-top: 0.625rem;
+  font-weight: 700;
+}
+
+.hero__subtitle {
+  font-size: var(--font-subtitle);
+  letter-spacing: 0.0625rem;
+  opacity: 0.8;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* Capsule columns (auto-scrolling school cards) */
+.hero__media-grid {
+  display: grid;
+  grid-template-columns: repeat(3, var(--capsule-width));
+  grid-template-rows: repeat(3, 1fr);
+  gap: var(--capsule-gap);
+  width: max-content;
+  max-width: 100%;
+  height: calc((var(--capsule-height) * 2) + var(--capsule-gap));
+  overflow: hidden;
+  position: relative;
+  margin: 0 auto;
+  order: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.hero__capsule-col {
+  position: relative;
+  height: 100%;
+}
+
+/* Each column scrolls its cards upward infinitely */
+.hero__capsule-track {
+  display: flex;
+  flex-direction: column;
+  gap: var(--capsule-gap);
+  height: max-content;
+
+  /* Anti-stutter GPU acceleration */
+  will-change: transform;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  -webkit-transform-style: preserve-3d;
+
+  animation: seamlessScrollUp 10s linear infinite;
+}
+
+/* Middle column starts staggered and pauses at the loop point to stay in sync */
+.hero__capsule-col--offset .hero__capsule-track {
+  transform: translate3d(0, calc(-1 * var(--capsule-offset)), 0);
+  animation: seamlessScrollUpPause 15s linear infinite; /* 10s move + 5s pause */
+}
+
+/* Freeze all columns on hover/focus so the cards are readable */
+.hero__media-grid:hover .hero__capsule-track,
+.hero__media-grid:focus-within .hero__capsule-track {
+  animation-play-state: paused;
+}
+
+.hero__capsule-item {
+  width: var(--capsule-width);
+  height: var(--capsule-height);
+  border-radius: 62.5rem; /* Large pill radius keeps cards stadium-shaped */
+  overflow: hidden;
+  box-sizing: border-box;
+  /* Prevents sub-pixel flickering at the edges during GPU scroll */
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  background-color: rgba(255, 255, 255, 0.05); /* Fallback while loading */
+}
+
+.hero__capsule-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Enquire Now form */
+.hero__form-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(0.75rem);
+  -webkit-backdrop-filter: blur(
+    0.75rem
+  ); /* Safari fallback for backdrop blur */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 2rem 1.75rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 0.625rem 1.875rem rgba(0, 0, 0, 0.3);
+  height: fit-content;
+  width: 100%;
+  max-width: 28.125rem;
+  margin: 0 auto;
+}
+
+.hero__form-title {
+  font-size: 32px;
+  margin-bottom: 1.25rem;
+  text-align: left;
+  font-weight: 700;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+/* Shared styling for every input and textarea in the form */
+.form-control {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 0.375rem;
+  color: #ffffff;
+  font-size: 0.95rem;
+  box-sizing: border-box;
+  transition:
+    background 0.2s,
+    border-color 0.2s;
+}
+
+.form-control::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: #ffb703;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* Submit button with a white slide-in hover layer */
+.submit-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 240px;
+  height: 54px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  z-index: 1;
+}
+
+/* Crisp outer white border, drawn on top of everything */
+.submit-btn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 1.5px solid #ffffff;
+  border-radius: 6px;
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* Base canvas: purple fills the text area */
+.submit-btn-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #3f186a;
+  display: flex;
+  align-items: center;
+  border-radius: 6px;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* White layer that unrolls rightward over the text on hover */
+.submit-btn-bg-slider {
+  position: absolute;
+  top: 0;
+  left: 60px; /* Starts right where the icon box ends */
+  right: 0;
+  bottom: 0;
+  background-color: #ffffff;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease-in-out;
+  z-index: 1;
+}
+
+/* Static white icon square on the left */
+.submit-btn-icon-box {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 100%;
+  background-color: #ffffff;
+  z-index: 2;
+}
+
+/* Arrow wrapper for the rotate-on-hover effect */
+.submit-btn-arrow-container {
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(0deg);
+  transition: transform 0.4s ease-in-out;
+}
+
+/* "SUBMIT" label, vertically centered next to the icon */
+.submit-btn-text-box {
+  position: relative;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff; /* White text on the purple base */
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  padding: 0 20px 0 0; /* Balances the space taken by the left icon box */
+  transition: color 0.3s ease-in-out;
+  z-index: 2;
+}
+
+/* --- Hover: reveal white, rotate arrow, darken label --- */
+.submit-btn:hover .submit-btn-bg-slider {
+  transform: scaleX(1);
+}
+
+.submit-btn:hover .submit-btn-arrow-container {
+  transform: rotate(45deg);
+}
+
+.submit-btn:hover .submit-btn-text-box {
+  color: #2a1459;
+}
+
+/* Keeps labels invisible on screen but readable by screen readers */
+.visually-hidden {
+  position: absolute;
+  width: 0.0625rem;
+  height: 0.0625rem;
+  padding: 0;
+  margin: -0.0625rem;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* Infinite scroll keyframes */
+
+/* Outer columns: constant upward scroll, 10s per loop */
+@keyframes seamlessScrollUp {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, calc(-1 * var(--loop-translate)), 0);
+  }
+}
+
+/* Middle column: moves with the outer columns (10s), then pauses (5s) */
+@keyframes seamlessScrollUpPause {
+  0% {
+    transform: translate3d(0, calc(-1 * var(--capsule-offset)), 0);
+    animation-timing-function: ease-in; /* Eases in from the initial stagger */
+  }
+  10% {
+    /* Ramp up to match the outer columns' speed */
+    transform: translate3d(
+      0,
+      calc((-0.15 * var(--loop-translate)) - var(--capsule-offset)),
+      0
+    );
+    animation-timing-function: linear;
+  }
+  60% {
+    /* Ease out just before stopping */
+    transform: translate3d(
+      0,
+      calc((-0.9 * var(--loop-translate)) - var(--capsule-offset)),
+      0
+    );
+    animation-timing-function: ease-out;
+  }
+  66.66% {
+    /* Stop exactly at the 10s mark, aligned to one full loop */
+    transform: translate3d(
+      0,
+      calc((-1 * var(--loop-translate)) - var(--capsule-offset)),
+      0
+    );
+  }
+  100% {
+    /* Hold the pause for the remaining 5s */
+    transform: translate3d(
+      0,
+      calc((-1 * var(--loop-translate)) - var(--capsule-offset)),
+      0
+    );
+  }
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .hero__capsule-track,
+  .hero__capsule-col--offset .hero__capsule-track {
+    animation: none;
+  }
+}

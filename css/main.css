@@ -1,11 +1,13 @@
-@import "components/header.css";
+/* Entry point: header styles first, then hero styles */
+@import "./components/header.css";
+@import "./components/hero.css";
 
+/* Global base styles shared across the whole page */
 body {
   background-color: #ffffff;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
   margin: 0;
   padding: 0;
   font-family: "Open Sans", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;

@@ -10,17 +10,19 @@
     <link rel="stylesheet" href="./css/main.css" />
   </head>
   <body>
+    <!-- Sticky header with brand logo and register button -->
     <header class="header" id="header">
       <div
         class="header__container"
         aria-label="Premier Schools Exhibition Home"
       >
+        <!-- Logo -->
         <img
           src="./assets/logo.svg"
           alt="Premier Schools Exhibition Logo"
           class="header__logo-img"
         />
-
+        <!-- Register Button -->
         <nav class="header__nav" aria-label="Main Navigation">
           <button class="register-btn">
             <div class="btn-content">
@@ -36,5 +38,207 @@
         </nav>
       </div>
     </header>
+
+    <!-- Hero landing: headline, animated capsule columns, and enquiry form -->
+    <main id="main-content">
+      <section class="hero" aria-label="Featured Schools and Events">
+        <div class="hero__container">
+          <!-- Left column: headline + auto-scrolling capsule columns -->
+          <div
+            class="hero__slider"
+            id="hero-slider"
+            role="region"
+            aria-roledescription="carousel"
+            aria-label="Highlighted Events"
+          >
+            <div class="hero__slides" id="hero-slides">
+              <article
+                class="hero__slide is-active"
+                role="group"
+                aria-roledescription="slide"
+                aria-label="1 of 1"
+              >
+                <div class="hero__content">
+                  <h1 class="hero__title">
+                    <span style="font-size: 40px">Discover Gurugram's</span>
+                    <br />
+                    <span style="font-size: 50px">Top 30+ schools</span>
+                    <span class="hero__subtitle" style="font-size: 30px"
+                      >ALL IN ONE PLACE</span
+                    >
+                    <br />
+                  </h1>
+                  <div>
+                    <img
+                      src="./assets/schedule.svg"
+                      alt="Schedule"
+                      class="hero__schedule"
+                    />
+                  </div>
+                </div>
+
+                <!-- Media Grid / Column Slider -->
+                <div class="hero__media-grid" aria-hidden="true">
+                  <!-- Column 1 -->
+                  <div class="hero__capsule-col">
+                    <div class="hero__capsule-track">
+                      <div class="hero__capsule-item">
+                        <img src="./assets/student1.svg" alt="" />
+                      </div>
+                      <div class="hero__capsule-item">
+                        <img src="./assets/student4.svg" alt="" />
+                      </div>
+                      <div class="hero__capsule-item">
+                        <img src="./assets/student7.svg" alt="" />
+                      </div>
+                      <div class="hero__capsule-item">
+                        <img src="./assets/student10.svg" alt="" />
+                      </div>
+
+                      <!-- Duplicated cards so the column loops seamlessly -->
+                      <div class="hero__capsule-item" aria-hidden="true">
+                        <img src="./assets/student1.svg" alt="" />
+                      </div>
+                      <div class="hero__capsule-item" aria-hidden="true">
+                        <img src="./assets/student4.svg" alt="" />
+                      </div>
+                      <div class="hero__capsule-item" aria-hidden="true">
+                        <img src="./assets/student7.svg" alt="" />
+                      </div>
+                      <div class="hero__capsule-item" aria-hidden="true">
+                        <img src="./assets/student10.svg" alt="" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Column 2 -->
+                  <div class="hero__capsule-col hero__capsule-col--offset">
+                    <div class="hero__capsule-track">
+                      <div class="hero__capsule-item">
+                        <img src="./assets/student2.svg" alt="" />
+                      </div>
+                      <div class="hero__capsule-item">
+                        <img src="./assets/student5.svg" alt="" />
+                      </div>
+                      <div class="hero__capsule-item">
+                        <img src="./assets/student8.svg" alt="" />
+                      </div>
+                      <div class="hero__capsule-item">
+                        <img src="./assets/student11.svg" alt="" />
+                      </div>
+
+                      <!-- Duplicated cards so the column loops seamlessly -->
+                      <div class="hero__capsule-item" aria-hidden="true">
+                        <img src="./assets/student2.svg" alt="" />
+                      </div>
+                      <div class="hero__capsule-item" aria-hidden="true">
+                        <img src="./assets/student5.svg" alt="" />
+                      </div>
+                      <div class="hero__capsule-item" aria-hidden="true">
+                        <img src="./assets/student8.svg" alt="" />
+                      </div>
+                      <div class="hero__capsule-item" aria-hidden="true">
+                        <img src="./assets/student11.svg" alt="" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Column 3 -->
+                  <div class="hero__capsule-col">
+                    <div class="hero__capsule-track">
+                      <div class="hero__capsule-item">
+                        <img src="./assets/student3.svg" alt="" />
+                      </div>
+                      <div class="hero__capsule-item">
+                        <img src="./assets/student6.svg" alt="" />
+                      </div>
+                      <div class="hero__capsule-item">
+                        <img src="./assets/student9.svg" alt="" />
+                      </div>
+                      <div class="hero__capsule-item">
+                        <img src="./assets/student12.svg" alt="" />
+                      </div>
+
+                      <!-- Duplicated cards so the column loops seamlessly -->
+                      <div class="hero__capsule-item" aria-hidden="true">
+                        <img src="./assets/student3.svg" alt="" />
+                      </div>
+                      <div class="hero__capsule-item" aria-hidden="true">
+                        <img src="./assets/student6.svg" alt="" />
+                      </div>
+                      <div class="hero__capsule-item" aria-hidden="true">
+                        <img src="./assets/student9.svg" alt="" />
+                      </div>
+                      <div class="hero__capsule-item" aria-hidden="true">
+                        <img src="./assets/student12.svg" alt="" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <!-- Right column: enquiry form card -->
+          <div class="hero__form-card" id="register">
+            <h2 class="hero__form-title" id="enquiry-form-heading">
+              Enquire Now
+            </h2>
+            <form class="enquiry-form" aria-labelledby="enquiry-form-heading">
+              <div class="form-group">
+                <label for="parent-name" class="visually-hidden"
+                  >Parent's Name</label
+                >
+                <input
+                  type="text"
+                  id="parent-name"
+                  name="parent-name"
+                  class="form-control"
+                  placeholder="Parent's Name"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="phone" class="visually-hidden">Phone number</label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  class="form-control"
+                  placeholder="Phone number"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="grade" class="visually-hidden"
+                  >Which grade are you looking for?</label
+                >
+                <textarea
+                  type="textarea"
+                  id="grade"
+                  name="grade"
+                  class="form-control"
+                  placeholder="Which grade are you looking for?"
+                ></textarea>
+              </div>
+
+              <button class="submit-btn">
+                <div class="submit-btn-content">
+                  <div class="submit-btn-bg-slider"></div>
+                  <div class="submit-btn-icon-box">
+                    <div class="submit-btn-arrow-container">
+                      <img src="./assets/arrow2.svg" alt="" />
+                    </div>
+                  </div>
+                  <div class="submit-btn-text-box">SUBMIT</div>
+                </div>
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
   </body>
 </html>
