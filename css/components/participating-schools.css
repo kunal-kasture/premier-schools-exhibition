@@ -42,6 +42,11 @@
   color: #ffffff;
 }
 
+.participating-schools__pause-btn:focus-visible {
+  outline: 2px solid #3f186a;
+  outline-offset: 2px;
+}
+
 /* js pauses rows via this class */
 .participating-schools--paused .school-slider__track {
   animation-play-state: paused;

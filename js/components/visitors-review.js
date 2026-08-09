@@ -36,4 +36,30 @@ function initVisitorsReview() {
     video.addEventListener("volumechange", sync);
     sync();
   });
+
+  // circular prev/next arrows scroll the grid by one card (mobile only)
+  const grid = document.querySelector(".visitors-review__grid");
+  const prevBtn = document.querySelector(".visitors-review__arrow--prev");
+  const nextBtn = document.querySelector(".visitors-review__arrow--next");
+  if (grid && prevBtn && nextBtn) {
+    const reducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    const step = () => {
+      const card = grid.querySelector(".visitors-review__card");
+      const gap =
+        parseFloat(getComputedStyle(grid).columnGap) ||
+        parseFloat(getComputedStyle(grid).gap) ||
+        30;
+      return card ? card.getBoundingClientRect().width + gap : 0;
+    };
+    const scrollBy = (delta) => {
+      grid.scrollBy({
+        left: delta,
+        behavior: reducedMotion ? "auto" : "smooth",
+      });
+    };
+    prevBtn.addEventListener("click", () => scrollBy(-step()));
+    nextBtn.addEventListener("click", () => scrollBy(step()));
+  }
 }

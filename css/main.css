@@ -11,6 +11,7 @@
 @import "./components/visitors-review.css";
 @import "./components/gallery.css";
 @import "./components/footer.css";
+@import "./components/sticky-cta.css";
 
 /* base */
 body {

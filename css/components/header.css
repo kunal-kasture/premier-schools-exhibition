@@ -59,10 +59,11 @@
   z-index: 1;
 }
 
-/* focus ring */
+/* focus ring: navy ring + gold halo stays AA on white and scrolled-dark header */
 .register-btn:focus-visible {
-  outline: 2px solid #ffb703;
+  outline: 2px solid #000e38;
   outline-offset: 2px;
+  box-shadow: 0 0 0 2px #ffb703;
 }
 
 /* inset shadow border (clicks pass through) */
@@ -201,5 +202,34 @@
 
   .header__logo-img {
     padding-left: 1rem;
+  }
+}
+
+/* strict mobile: smaller logo, no register button */
+@media (max-width: 48rem) {
+  .header,
+  .header--scrolled {
+    background: rgba(255, 255, 255, 1);
+  }
+
+  .header__container {
+    height: 60px;
+  }
+
+  .header__logo-img {
+    width: 104.24px;
+    height: 80px;
+    padding-left: 0;
+    padding-top: 0;
+  }
+
+  /* sticky: logo shrinks to fit the bar */
+  .header--scrolled .header__logo-img {
+    width: 78.18px;
+    height: 60px;
+  }
+
+  .register-btn {
+    display: none;
   }
 }

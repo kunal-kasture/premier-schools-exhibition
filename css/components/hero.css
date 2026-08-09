@@ -186,7 +186,7 @@
   font-weight: 600;
 }
 
-/* capsule columns */
+/* capsule columns: fixed 3-col window, each column's track scrolls up */
 .hero__media-grid {
   display: grid;
   grid-template-columns: repeat(3, var(--capsule-width));
@@ -234,6 +234,16 @@
   animation-play-state: paused;
 }
 
+/* arch from below (shown on mobile only) */
+.hero__arc {
+  display: none;
+}
+
+/* schedule pill (shown on mobile only) */
+.hero__schedule-mobile {
+  display: none;
+}
+
 .hero__capsule-item {
   width: var(--capsule-width);
   height: var(--capsule-height);
@@ -274,6 +284,14 @@
   margin-bottom: 1.25rem;
   text-align: left;
   font-weight: 700;
+}
+
+.hero__form-success {
+  margin: 1rem 0 0;
+  color: #7ee0a3;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.4;
 }
 
 .hero__form-group {
@@ -443,14 +461,13 @@
   }
 }
 
-/* middle column: 10s move, 5s pause */
+/* middle column: 10s move + 5s pause */
 @keyframes seamlessScrollUpPause {
   0% {
     transform: translate3d(0, calc(-1 * var(--capsule-offset)), 0);
     animation-timing-function: ease-in;
   }
   10% {
-    /* ramp up to outer columns' speed */
     transform: translate3d(
       0,
       calc((-0.15 * var(--loop-translate)) - var(--capsule-offset)),
@@ -459,7 +476,6 @@
     animation-timing-function: linear;
   }
   60% {
-    /* ease out just before stopping */
     transform: translate3d(
       0,
       calc((-0.9 * var(--loop-translate)) - var(--capsule-offset)),
@@ -468,7 +484,6 @@
     animation-timing-function: ease-out;
   }
   66.66% {
-    /* stop at loop boundary (10s mark) */
     transform: translate3d(
       0,
       calc((-1 * var(--loop-translate)) - var(--capsule-offset)),
@@ -476,7 +491,6 @@
     );
   }
   100% {
-    /* hold the 5s pause */
     transform: translate3d(
       0,
       calc((-1 * var(--loop-translate)) - var(--capsule-offset)),
@@ -490,5 +504,176 @@
   .hero__capsule-track,
   .hero__capsule-col--offset .hero__capsule-track {
     animation: none;
+  }
+}
+
+/* phones: one swipeable capsule strip, arch from below, peach text band */
+@media (max-width: 48rem) {
+  /* compact headline sizes so everything fits the 560px hero */
+  :root {
+    --hero-title-lg: 32px;
+    --hero-title-xl: 38px;
+    --hero-title-sm: 24px;
+  }
+
+  /* the hero itself is exactly 650px tall on mobile */
+  .hero {
+    height: 650px;
+    min-height: 0;
+    overflow: hidden;
+    /* dark gradient everywhere except the bottom band behind the
+       schedule pill, which stays transparent (white page bg) */
+    background: linear-gradient(
+      360deg,
+      rgba(0, 0, 0, 0) 0,
+      rgba(0, 0, 0, 0) 110px,
+      #000e38 110px,
+      #3f186a 100%
+    );
+  }
+
+  .hero__container {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    height: 100%;
+    box-sizing: border-box;
+    gap: 0;
+    padding: 14px 0 0;
+  }
+
+  .hero__slider {
+    flex: 1 1 auto;
+  }
+
+  .hero__slides {
+    height: 100%;
+  }
+
+  .hero__slide {
+    position: relative;
+    height: 100%;
+    gap: 0;
+    justify-content: flex-start;
+  }
+
+  .hero__form-card {
+    display: none;
+  }
+
+  .hero__schedule {
+    display: none;
+  }
+
+  /* capsule strip fills the slide; arch and headline sit on top */
+  .hero__media-grid {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    width: 100%;
+    height: 100%;
+    gap: 16px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-x;
+    position: relative;
+    z-index: 1;
+    padding: 0;
+    animation: none;
+    margin: 0;
+  }
+
+  .hero__media-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* columns/tracks flatten so all capsules form one horizontal strip */
+  .hero__capsule-col,
+  .hero__capsule-track {
+    display: contents;
+  }
+
+  .hero__capsule-item {
+    flex: 0 0 138px;
+    width: 138px;
+    height: 221px;
+    transform: none;
+  }
+
+  /* loop copies are hidden on mobile */
+  .hero__capsule-item:nth-child(n + 5):nth-child(-n + 8),
+  .hero__capsule-item:nth-child(n + 13):nth-child(-n + 16),
+  .hero__capsule-item:nth-child(n + 21):nth-child(-n + 24) {
+    display: none;
+  }
+
+  /* zigzag: odd sits low, even sits high */
+  .hero__capsule-item:nth-child(odd) {
+    margin-top: 50px;
+  }
+
+  .hero__capsule-item:nth-child(even) {
+    margin-bottom: 50px;
+  }
+
+  /* arch at the bottom of the hero, headline sits above it */
+  .hero__arc {
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 105px;
+    height: 120px;
+    background: #fff;
+    clip-path: ellipse(65% 60% at 50% 115%);
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  /* schedule pill sitting below the arch at the bottom */
+  .hero__schedule-mobile {
+    display: block;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 8px;
+    width: min(390px, 92%);
+    height: auto;
+    z-index: 3;
+  }
+
+  /* headline in the empty space above the arch, no background band */
+  .hero__content {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 235px;
+    z-index: 3;
+    padding: 0 1rem;
+    box-sizing: border-box;
+  }
+
+  .hero__title {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .hero__subtitle {
+    background: linear-gradient(180deg, #ffcc81 0%, #e9c79f 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    margin-bottom: 0;
+  }
+}
+
+/* small phones: shrink the headline so it never clips the 650px hero */
+@media (max-width: 30rem) {
+  :root {
+    --hero-title-lg: 26px;
+    --hero-title-xl: 30px;
+    --hero-title-sm: 20px;
   }
 }

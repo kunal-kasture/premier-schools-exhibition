@@ -251,10 +251,16 @@
                     </div>
                   </div>
                 </div>
+                <div class="hero__arc"></div>
+                <div class="hero__schedule-mobile">
+                  <img
+                    src="./assets/schedule-mobile.svg"
+                    alt="exhibition schedule"
+                  />
+                </div>
               </div>
             </div>
           </div>
-
           <!-- Enquiry form -->
           <div class="hero__form-card" id="register">
             <h2 class="hero__form-title" id="enquiry-form-heading">
@@ -298,6 +304,11 @@
                   placeholder="Which grade are you looking for?"
                 ></textarea>
               </div>
+
+              <p class="hero__form-success" role="status" hidden>
+                Thank you! Your enquiry has been received. We'll be in touch
+                soon.
+              </p>
 
               <button class="submit-btn" type="submit" aria-label="Submit">
                 <span class="submit-btn__content">
@@ -565,6 +576,7 @@
           muted
           loop
           playsinline
+          preload="metadata"
           aria-label="Premier Schools Exhibition event video"
         ></video>
         <button class="event-video__toggle" type="button" aria-pressed="false">
@@ -576,7 +588,8 @@
       <!-- Choose the school that fits you best -->
       <section class="choose-school" aria-labelledby="choose-school-title">
         <h2 class="choose-school__title" id="choose-school-title">
-          Choose the School That Fits You Best
+          <span>Choose the School</span>
+          <span>That Fits You Best</span>
         </h2>
         <div
           class="choose-school__grid"
@@ -649,6 +662,7 @@
           <img
             src="./assets/pre-schedule.svg"
             alt="Parents visiting school stalls during the exhibition"
+            loading="lazy"
           />
         </div>
       </section>
@@ -660,21 +674,25 @@
             class="awards__photo awards__photo--1"
             src="./assets/awards-kids-photo1.svg"
             alt="Kids having fun at the awards event"
+            loading="lazy"
           />
           <img
             class="awards__photo awards__photo--2"
             src="./assets/awards-kids-photo2.svg"
             alt="Young award winner on stage"
+            loading="lazy"
           />
           <img
             class="awards__photo awards__photo--3"
             src="./assets/awards-kids-photo3.svg"
             alt="Children celebrating together"
+            loading="lazy"
           />
           <img
             class="awards__photo awards__photo--4"
             src="./assets/awards-kids-photo4.svg"
             alt="Kids collecting their awards"
+            loading="lazy"
           />
         </div>
         <div class="awards__logo">
@@ -698,8 +716,10 @@
           </div>
           <h3 class="awards__heading">Premier Kidz Awards</h3>
           <p class="awards__text">
-            A prestigious platform celebrating young talent and building
-            confidence by giving children the spotlight to shine.
+            <span class="awards__text-line"
+              >A prestigious platform celebrating young talent and</span
+            >
+            building confidence by giving children the spotlight to shine.
           </p>
           <button class="pre-schedule-btn awards__know-more" type="button">
             <span class="pre-schedule-btn__content">
@@ -731,30 +751,35 @@
               <img
                 src="./assets/exhibition1.svg"
                 alt="Exhibition highlight 1"
+                loading="lazy"
               />
             </article>
             <article class="exhibition__card">
               <img
                 src="./assets/exhibition2.svg"
                 alt="Exhibition highlight 2"
+                loading="lazy"
               />
             </article>
             <article class="exhibition__card">
               <img
                 src="./assets/exhibition3.svg"
                 alt="Exhibition highlight 3"
+                loading="lazy"
               />
             </article>
             <article class="exhibition__card">
               <img
                 src="./assets/exhibition4.svg"
                 alt="Exhibition highlight 4"
+                loading="lazy"
               />
             </article>
             <article class="exhibition__card">
               <img
                 src="./assets/exhibition5.svg"
                 alt="Exhibition highlight 5"
+                loading="lazy"
               />
             </article>
           </div>
@@ -847,6 +872,7 @@
               muted
               loop
               playsinline
+              preload="metadata"
               aria-label="Visitor review video 1"
             ></video>
             <button
@@ -868,6 +894,7 @@
               muted
               loop
               playsinline
+              preload="metadata"
               aria-label="Visitor review video 2"
             ></video>
             <button
@@ -889,6 +916,7 @@
               muted
               loop
               playsinline
+              preload="metadata"
               aria-label="Visitor review video 3"
             ></video>
             <button
@@ -910,6 +938,7 @@
               muted
               loop
               playsinline
+              preload="metadata"
               aria-label="Visitor review video 4"
             ></video>
             <button
@@ -923,6 +952,46 @@
               <span class="visitors-review__toggle-text">Play Review</span>
             </button>
           </div>
+        </div>
+        <div
+          class="visitors-review__arrows"
+          role="group"
+          aria-label="Scroll visitor reviews"
+        >
+          <button
+            class="visitors-review__arrow visitors-review__arrow--prev"
+            type="button"
+            aria-label="Previous review"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M15 18l-6-6 6-6" />
+            </svg>
+          </button>
+          <button
+            class="visitors-review__arrow visitors-review__arrow--next"
+            type="button"
+            aria-label="Next review"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M9 6l6 6-6 6" />
+            </svg>
+          </button>
         </div>
       </section>
 
@@ -944,31 +1013,37 @@
               src="./assets/gallery-photo1.jpg"
               alt="Gallery photo 1"
               draggable="false"
+              loading="lazy"
             />
             <img
               src="./assets/gallery-photo2.jpg"
               alt="Gallery photo 2"
               draggable="false"
+              loading="lazy"
             />
             <img
               src="./assets/gallery-photo3.jpg"
               alt="Gallery photo 3"
               draggable="false"
+              loading="lazy"
             />
             <img
               src="./assets/gallery-photo4.jpg"
               alt="Gallery photo 4"
               draggable="false"
+              loading="lazy"
             />
             <img
               src="./assets/gallery-photo5.jpg"
               alt="Gallery photo 5"
               draggable="false"
+              loading="lazy"
             />
             <img
               src="./assets/gallery-photo6.jpg"
               alt="Gallery photo 6"
               draggable="false"
+              loading="lazy"
             />
           </div>
           <span
@@ -1030,10 +1105,24 @@
       </div>
       <div class="footer__bottom">
         <p class="footer__copyright">
-          Copyright © 2025 | All rights reserved. Premier Schools Exhibition
+          <span class="footer__copyright-line"
+            >Copyright © 2025 | All rights reserved.</span
+          >
+          <span class="footer__copyright-line">Premier Schools Exhibition</span>
         </p>
       </div>
     </footer>
+
+    <!-- Mobile sticky register CTA -->
+    <div class="sticky-cta" aria-label="Register">
+      <a class="sticky-cta__btn sticky-cta__btn--register" href="#register">
+        Register Now
+      </a>
+      <span class="sticky-cta__btn sticky-cta__btn--parents">
+        <span class="sticky-cta__parents-line">7635+ Parents</span>
+        <span class="sticky-cta__parents-line">Registered</span>
+      </span>
+    </div>
 
     <!-- Scripts deferred so they work from file:// -->
     <script defer src="./js/components/header.js"></script>
@@ -1044,6 +1133,7 @@
     <script defer src="./js/components/visitors-review.js"></script>
     <script defer src="./js/components/participating-schools.js"></script>
     <script defer src="./js/components/gallery.js"></script>
+    <script defer src="./js/components/enquiry-form.js"></script>
     <script defer src="./js/main.js"></script>
   </body>
 </html>

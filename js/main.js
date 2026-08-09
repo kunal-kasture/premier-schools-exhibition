@@ -4,12 +4,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const inits = [
     "initStickyHeader",
     "initHeroSlider",
+    "initCapsuleDrag",
     "initSchoolSlider",
     "initEventVideo",
     "initChooseSchoolSlider",
     "initExhibitionSlider",
     "initVisitorsReview",
     "initGallery",
+    "initEnquiryForm",
   ];
   inits.forEach((name) => {
     try {

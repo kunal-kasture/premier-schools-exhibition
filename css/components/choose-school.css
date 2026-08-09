@@ -76,6 +76,18 @@
   transform: scale(1.25);
 }
 
+.choose-school__dot:focus-visible {
+  outline: 2px solid #3f186a;
+  outline-offset: 2px;
+}
+
+@media (max-width: 48rem) {
+  /* mobile: force the title onto two fixed lines */
+  .choose-school__title span {
+    display: block;
+  }
+}
+
 @media (max-width: 64rem) {
   .choose-school__grid {
     display: flex;

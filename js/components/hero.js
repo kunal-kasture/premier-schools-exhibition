@@ -144,3 +144,35 @@ function initHeroSlider() {
       }
     });
 }
+
+// drag a mouse across the capsule strip to scroll it
+function initCapsuleDrag() {
+  const track = document.querySelector(".hero__capsule-track");
+  if (!track) return;
+
+  let isDown = false;
+  let startX = 0;
+  let startScroll = 0;
+
+  track.addEventListener("pointerdown", (e) => {
+    if (e.pointerType !== "mouse") return; // touch scrolls natively
+    isDown = true;
+    startX = e.clientX;
+    startScroll = track.scrollLeft;
+    track.classList.add("hero__capsule-track--dragging");
+  });
+
+  track.addEventListener("pointermove", (e) => {
+    if (!isDown) return;
+    track.scrollLeft = startScroll - (e.clientX - startX);
+  });
+
+  const stop = () => {
+    if (!isDown) return;
+    isDown = false;
+    track.classList.remove("hero__capsule-track--dragging");
+  };
+
+  track.addEventListener("pointerup", stop);
+  track.addEventListener("pointercancel", stop);
+}
