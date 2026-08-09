@@ -1,4 +1,4 @@
-/* D-shape bg, clipped half-ellipse so no rectangle */
+/* d-shaped bg (half-ellipse clip) */
 .exhibition {
   position: relative;
   z-index: 0;
@@ -61,7 +61,7 @@
   object-fit: cover;
 }
 
-/* arrows+dots on one line, pause wraps below */
+/* arrows+dots one line, pause wraps */
 .exhibition__controls {
   display: flex;
   flex-wrap: wrap;

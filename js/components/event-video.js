@@ -1,4 +1,4 @@
-// Play/pause toggle for the event video.
+// play/pause for the video
 function initEventVideo() {
   const video = document.querySelector(".event-video__player");
   const toggle = document.querySelector(".event-video__toggle");

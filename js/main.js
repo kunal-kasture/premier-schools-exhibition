@@ -1,15 +1,26 @@
-// Boot page behaviours once the DOM is ready.
+// boot the widgets on DOM ready
+// one broken init shouldn't kill the rest
 document.addEventListener("DOMContentLoaded", () => {
-  initStickyHeader();
-  initHeroSlider();
-  initSchoolSlider();
-  initEventVideo();
-  initChooseSchoolSlider();
-  initExhibitionSlider();
-  initVisitorsReview();
+  const inits = [
+    "initStickyHeader",
+    "initHeroSlider",
+    "initSchoolSlider",
+    "initEventVideo",
+    "initChooseSchoolSlider",
+    "initExhibitionSlider",
+    "initVisitorsReview",
+    "initGallery",
+  ];
+  inits.forEach((name) => {
+    try {
+      window[name]?.();
+    } catch (err) {
+      console.error(`[main] ${name} failed:`, err);
+    }
+  });
 });
 
-// Pause/play toggle for the scrolling school logos.
+// pause/play for the scrolling logos
 function initSchoolSlider() {
   const section = document.querySelector(".participating-schools");
   const pauseBtn = section?.querySelector(".participating-schools__pause-btn");

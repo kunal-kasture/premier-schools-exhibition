@@ -4,23 +4,23 @@
   --font-title: clamp(1.8rem, 3.5vw, 3.2rem);
   --font-subtitle: clamp(0.85rem, 1.2vw, 1rem);
 
-  /* Capsule sizing is viewport-derived so all three columns fit */
+  /* viewport-derived so all three columns fit */
   --capsule-width: min(28vw, 5.9375rem);
 
-  /* Height locked to width for a fixed aspect ratio */
+  /* height tied to width, fixed ratio */
   --capsule-height: calc(var(--capsule-width) * 1.8947);
 
   --capsule-gap: min(2vw, 0.75rem);
   --capsule-offset: calc(var(--capsule-height) / 2);
 
-  /* Distance the track travels per loop (4 cards + 4 duplicates) */
+  /* per loop = 4 cards + 4 dupes */
   --loop-translate: calc(
     (var(--capsule-height) * 4) + (var(--capsule-gap) * 4)
   );
 }
 
 @media (min-width: 48rem) {
-  /* 768px+: fixed sizes once there's room */
+  /* 768px+: fixed sizes */
   :root {
     --capsule-width: 7.5rem;
     --capsule-height: calc(var(--capsule-width) * 1.8947);
@@ -39,7 +39,7 @@
 }
 
 @media (min-width: 64rem) and (max-width: 74.99rem) {
-  /* 1024-1200px: hero is narrow here, shrink capsules to fit */
+  /* 1024-1200px: shrink capsules to fit */
   :root {
     --capsule-width: clamp(5.5rem, 10vw, 7.5rem);
     --capsule-height: calc(var(--capsule-width) * 1.8947);
@@ -49,7 +49,7 @@
 }
 
 @media (min-width: 64rem) and (max-width: 74.99rem) {
-  /* 1024-1200px: scale the headline text down */
+  /* 1024-1200px: smaller headline */
   :root {
     --hero-title-lg: 26px;
     --hero-title-xl: 32px;
@@ -72,13 +72,13 @@
 }
 
 @media (min-width: 64rem) and (max-width: 74.99rem) {
-  /* 1024-1200px: content is shorter, trim the hero height */
+  /* narrow screens: trim hero height */
   .hero {
     min-height: 480px;
   }
 }
 
-/* Two-column grid: left slider + right form card */
+/* left slider + right form */
 .hero__container {
   max-width: 87.5rem;
   margin: 0 auto;
@@ -91,14 +91,14 @@
 }
 
 @media (min-width: 64rem) {
-  /* 1024px+: content left, form right (26vw keeps capsules fitting) */
+  /* 1024px+: form right (26vw fits capsules) */
   .hero__container {
     grid-template-columns: 1fr min(23.75rem, 26vw);
   }
 }
 
 @media (max-width: 63.99rem) {
-  /* Phones/tablets: stack, let the hero grow with its content */
+  /* phones/tablets: stack and grow */
   .hero {
     height: auto;
     min-height: 100vh;
@@ -164,7 +164,7 @@
 
 /* Typography */
 .hero__title {
-  /* Gradient text via background-clip */
+  /* gradient text via background-clip */
   background: linear-gradient(180deg, #ffcc81 0%, #e9c79f 100%);
   -webkit-background-clip: text;
   background-clip: text;
@@ -186,7 +186,7 @@
   font-weight: 600;
 }
 
-/* Capsule columns (auto-scrolling student cards) */
+/* capsule columns */
 .hero__media-grid {
   display: grid;
   grid-template-columns: repeat(3, var(--capsule-width));
@@ -222,13 +222,13 @@
   animation: seamlessScrollUp 10s linear infinite;
 }
 
-/* Middle column is staggered and pauses at the loop point to stay in sync */
+/* middle column staggered, pauses to sync */
 .hero__capsule-col--offset .hero__capsule-track {
   transform: translate3d(0, calc(-1 * var(--capsule-offset)), 0);
   animation: seamlessScrollUpPause 15s linear infinite; /* 10s move + 5s pause */
 }
 
-/* Freeze on hover/focus so the cards stay readable */
+/* pause on hover/focus */
 .hero__media-grid:hover .hero__capsule-track,
 .hero__media-grid:focus-within .hero__capsule-track {
   animation-play-state: paused;
@@ -240,7 +240,7 @@
   border-radius: 62.5rem; /* stadium pill shape */
   overflow: hidden;
   box-sizing: border-box;
-  /* Avoids sub-pixel flicker during GPU scroll */
+  /* avoids sub-pixel flicker during GPU scroll */
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   background-color: rgba(255, 255, 255, 0.05);
@@ -305,7 +305,7 @@
   outline-offset: 2px;
 }
 
-/* Submit button with a white slide-in hover layer */
+/* white slide-in hover layer */
 .submit-btn {
   position: relative;
   display: flex;
@@ -320,13 +320,13 @@
   z-index: 1;
 }
 
-/* Visible keyboard focus indicator */
+/* keyboard focus indicator */
 .submit-btn:focus-visible {
   outline: 2px solid #ffb703;
   outline-offset: 2px;
 }
 
-/* White border on top; pointer-events off so it stays click-through */
+/* white border, click-through */
 .submit-btn::after {
   content: "";
   position: absolute;
@@ -354,7 +354,7 @@
   z-index: 1;
 }
 
-/* White layer that slides right over the text on hover */
+/* hover slide-in layer */
 .submit-btn__bg-slider {
   position: absolute;
   top: 0;
@@ -406,7 +406,7 @@
   z-index: 2;
 }
 
-/* Hover: white layer, arrow rotated, dark label */
+/* hover: slide layer, rotate arrow, dark text */
 .submit-btn:hover .submit-btn__bg-slider {
   transform: scaleX(1);
 }
@@ -419,7 +419,7 @@
   color: #2a1459;
 }
 
-/* Visually hidden but readable by screen readers */
+/* screenreader only */
 .visually-hidden {
   position: absolute;
   width: 0.0625rem;
@@ -433,7 +433,7 @@
 
 /* Scroll keyframes */
 
-/* Outer columns: steady upward scroll (10s per loop) */
+/* outer columns: steady upward scroll */
 @keyframes seamlessScrollUp {
   0% {
     transform: translate3d(0, 0, 0);
@@ -443,14 +443,14 @@
   }
 }
 
-/* Middle column: move (10s) then pause (5s) */
+/* middle column: 10s move, 5s pause */
 @keyframes seamlessScrollUpPause {
   0% {
     transform: translate3d(0, calc(-1 * var(--capsule-offset)), 0);
     animation-timing-function: ease-in;
   }
   10% {
-    /* ramp up to match the outer columns' speed */
+    /* ramp up to outer columns' speed */
     transform: translate3d(
       0,
       calc((-0.15 * var(--loop-translate)) - var(--capsule-offset)),
@@ -468,7 +468,7 @@
     animation-timing-function: ease-out;
   }
   66.66% {
-    /* stop at a full-loop boundary, aligned to the 10s mark */
+    /* stop at loop boundary (10s mark) */
     transform: translate3d(
       0,
       calc((-1 * var(--loop-translate)) - var(--capsule-offset)),
@@ -476,7 +476,7 @@
     );
   }
   100% {
-    /* hold the pause for the remaining 5s */
+    /* hold the 5s pause */
     transform: translate3d(
       0,
       calc((-1 * var(--loop-translate)) - var(--capsule-offset)),
@@ -485,7 +485,7 @@
   }
 }
 
-/* Reduced motion: slow the scroll instead of stopping it */
+/* reduced motion: slow instead of stop */
 @media (prefers-reduced-motion: reduce) {
   .hero__capsule-track,
   .hero__capsule-col--offset .hero__capsule-track {

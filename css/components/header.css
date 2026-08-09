@@ -1,4 +1,4 @@
-/* Sticky header; turns gradient once scrolled (see header.js) */
+/* sticky; gradient once scrolled (header.js) */
 .header {
   position: sticky;
   top: 0;
@@ -11,13 +11,13 @@
   overflow: visible;
 }
 
-/* Scrolled: pinned header adopts the hero gradient + shadow */
+/* scrolled: hero gradient + shadow */
 .header--scrolled {
   background: linear-gradient(89.72deg, #000e38 0.22%, #3f186a 52.52%);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
 }
 
-/* Fixed-height bar that anchors the absolutely positioned children */
+/* anchor for the abs-positioned children */
 .header__container {
   display: flex;
   justify-content: space-between;
@@ -38,7 +38,7 @@
   left: 0;
 }
 
-/* Shrink the logo to fit the pinned header */
+/* shrink logo when pinned */
 .header--scrolled .header__logo-img {
   height: 99px;
   width: auto;
@@ -59,13 +59,13 @@
   z-index: 1;
 }
 
-/* Visible keyboard focus indicator */
+/* focus ring */
 .register-btn:focus-visible {
   outline: 2px solid #ffb703;
   outline-offset: 2px;
 }
 
-/* Navy border drawn with an inset shadow so it doesn't capture clicks */
+/* inset shadow border (clicks pass through) */
 .register-btn::after {
   content: "";
   position: absolute;
@@ -93,7 +93,7 @@
   -webkit-mask-image: -webkit-radial-gradient(white, black);
 }
 
-/* Gradient layer that slides in from the left on hover */
+/* hover slide-in gradient */
 .register-btn__bg-slider {
   position: absolute;
   top: 0;
@@ -145,7 +145,7 @@
   z-index: 2;
 }
 
-/* Hover: slide the gradient in, rotate the arrow, white label */
+/* hover: slide gradient, rotate arrow, white label */
 .register-btn:hover .register-btn__bg-slider {
   transform: scaleX(1);
 }
@@ -162,7 +162,7 @@
   color: #ffffff;
 }
 
-/* Scrolled: match the submit button (purple body, white icon square) */
+/* scrolled: match submit button */
 .header--scrolled .register-btn .register-btn__content {
   background-color: #3f186a;
 }
@@ -175,7 +175,7 @@
   background: #ffffff;
 }
 
-/* White arrow in the SVG, so invert it on the white square */
+/* svg arrow is white -> invert on white square */
 .header--scrolled .register-btn .register-btn__arrow img {
   filter: invert(1);
 }
@@ -184,7 +184,7 @@
   color: #ffffff;
 }
 
-/* Scrolled hover: white layer, dark label */
+/* scrolled hover: white layer, dark label */
 .header--scrolled .register-btn:hover .register-btn__bg-slider {
   background: #ffffff;
 }
@@ -193,7 +193,7 @@
   color: #2a1459;
 }
 
-/* Small screens: keep the button fully in the viewport */
+/* phones: keep button on screen */
 @media (max-width: 30rem) {
   .register-btn {
     right: 1rem;

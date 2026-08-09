@@ -1,8 +1,8 @@
-// Auto-playing hero slider with arrow-key, touch, and pause support.
+// auto-playing hero slider
 function initHeroSlider() {
   const slides = document.querySelectorAll(".hero__slide");
   const slidesContainer = document.getElementById("hero-slides");
-  // Controls are optional, so guard against missing buttons.
+  // buttons are optional - guard
   const prevBtn = document.querySelector(".hero__btn--prev");
   const nextBtn = document.querySelector(".hero__btn--next");
   const pauseBtn = document.querySelector(".hero__btn--pause");
@@ -15,7 +15,7 @@ function initHeroSlider() {
   let isPlaying = !reduceMotion;
   let slideInterval = null;
 
-  // Move to a slide and keep active/aria state in sync
+  // go to slide i, keep aria in sync
   function updateSlide(index) {
     currentSlide = (index + slides.length) % slides.length;
     slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
@@ -34,7 +34,7 @@ function initHeroSlider() {
     updateSlide(currentSlide - 1);
   }
 
-  // Start auto-advancing every 5s (respects the reduced-motion preference)
+  // auto-advance every 5s (unless reduced motion)
   function startAutoPlay() {
     if (reduceMotion) return;
     if (!slideInterval) {
@@ -47,7 +47,7 @@ function initHeroSlider() {
     slideInterval = null;
   }
 
-  // Pause/play toggle, keeping aria state updated
+  // pause/play toggle + aria
   pauseBtn?.addEventListener("click", () => {
     if (isPlaying) {
       stopAutoPlay();
@@ -63,7 +63,7 @@ function initHeroSlider() {
     isPlaying = !isPlaying;
   });
 
-  // Manual nav restarts the auto-play timer
+  // manual nav resets the timer
   prevBtn?.addEventListener("click", () => {
     prevSlide();
     if (isPlaying) startAutoPlay();
@@ -74,7 +74,7 @@ function initHeroSlider() {
     if (isPlaying) startAutoPlay();
   });
 
-  // Arrow keys navigate slides for keyboard users
+  // arrow keys for keyboard users
   heroSlider?.addEventListener("keydown", (e) => {
     if (e.key === "ArrowLeft") {
       e.preventDefault();
@@ -87,7 +87,7 @@ function initHeroSlider() {
     }
   });
 
-  // Pause while hovered/focused, resume after
+  // pause on hover/focus
   heroSlider?.addEventListener("mouseenter", stopAutoPlay);
   heroSlider?.addEventListener("mouseleave", () => {
     if (isPlaying) startAutoPlay();
@@ -97,7 +97,7 @@ function initHeroSlider() {
     if (isPlaying) startAutoPlay();
   });
 
-  // Swipe support for touch
+  // touch swipe
   let startX = 0;
   heroSlider?.addEventListener(
     "touchstart",

@@ -1,4 +1,4 @@
-/* Pre-schedule CTA with blended image */
+/* pre-schedule CTA, blended image */
 .pre-schedule {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -27,7 +27,7 @@
   margin: 0;
 }
 
-/* Give the exclamation mark's italic overhang room so it isn't clipped */
+/* room for the ! overhang */
 .pre-schedule__eyebrow {
   padding-right: 10px;
 }
@@ -48,7 +48,7 @@
   align-self: stretch;
 }
 
-/* Media half dissolves into the section background with a smooth smudged edge */
+/* image blends into the section bg */
 .pre-schedule__media img {
   display: block;
   width: 100%;
@@ -88,13 +88,13 @@
   margin-top: 1rem;
 }
 
-/* Visible keyboard focus indicator */
+/* focus ring */
 .pre-schedule-btn:focus-visible {
   outline: 2px solid #ffb703;
   outline-offset: 2px;
 }
 
-/* Navy border drawn with an inset shadow so it doesn't capture clicks */
+/* inset shadow border (clicks pass through) */
 .pre-schedule-btn::after {
   content: "";
   position: absolute;
@@ -122,7 +122,7 @@
   -webkit-mask-image: -webkit-radial-gradient(white, black);
 }
 
-/* Gradient layer that slides in from the left on hover */
+/* hover slide-in gradient */
 .pre-schedule-btn__bg-slider {
   position: absolute;
   top: 0;
@@ -176,7 +176,7 @@
   z-index: 2;
 }
 
-/* Hover: slide the gradient in, rotate the arrow, white label */
+/* hover: slide gradient, rotate arrow, white label */
 .pre-schedule-btn:hover .pre-schedule-btn__bg-slider {
   transform: scaleX(1);
 }
@@ -211,7 +211,7 @@
     font-size: 38px;
   }
 
-  /* On small screens the media sits below the content, so the blend fades top-to-bottom */
+  /* phones: blend flips top-to-bottom */
   .pre-schedule__media img {
     -webkit-mask-image: linear-gradient(
       to bottom,

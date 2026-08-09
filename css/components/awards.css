@@ -1,4 +1,4 @@
-/* Awards & attractions section */
+/* awards */
 .awards {
   display: grid;
   grid-template-columns: auto auto 1fr;
@@ -10,7 +10,7 @@
   background: url("../../assets/bg-awards.svg") center / cover no-repeat;
 }
 
-/* Four diamonds grouped into one larger diamond with a 20px gap between them */
+/* 4 diamonds, 20px gaps */
 .awards__photos {
   position: relative;
   width: 646.34px;
@@ -30,7 +30,7 @@
   filter: drop-shadow(0 16px 40px rgba(0, 14, 56, 0.25));
 }
 
-/* Group diamond: top -> left -> right -> bottom, inner tips pulled 20px from center */
+/* order: top, left, right, bottom; tips 20px in */
 .awards__photo--1 {
   top: 0;
   left: 171.585px;
@@ -138,7 +138,7 @@
   color: rgba(0, 0, 0, 1);
 }
 
-/* Reuse the pre-schedule button, just narrower and with a transparent fill */
+/* like pre-schedule btn, slimmer + transparent */
 .awards__know-more {
   width: 214px;
 }
@@ -168,11 +168,8 @@
     overflow-x: clip;
   }
 
-  /* Tablet: 3 diamond photos + the award logo form the diamond group, adaptive scale.
-     The logo replaces the hidden top photo (P1). Negative margins offset the
-     scaled-down group's dead space so no empty gap shows below the photos. */
-  /* Title sits above the star group: the content block becomes transparent to the
-     grid (display: contents) so its children act as direct grid items. */
+  /* tablet: logo fills hidden top slot, negative margins eat dead space */
+  /* title above: content is display:contents so kids hit the grid */
   .awards__title {
     grid-column: 1;
     grid-row: 1;
@@ -203,7 +200,7 @@
     display: none;
   }
 
-  /* Interchange: right photo moves to the bottom slot, bottom photo to the right slot */
+  /* right and bottom photos swap */
   .awards__photo--3 {
     top: 343.17px;
     left: 171.585px;
@@ -214,8 +211,7 @@
     left: 343.17px;
   }
 
-  /* Logo wrapper mirrors the photos group so it scales together, logo sits in the top slot.
-     Tablet scale is adaptive (0.8); strict sizes apply on phones in the <=30rem query. */
+  /* logo mirrors photo group, sits top slot; scale 0.8 (phones stricter) */
   .awards__logo {
     width: 646.34px;
     height: 646.34px;
@@ -241,8 +237,7 @@
     font-size: 36px;
   }
 
-  /* The title sits above the star group: the content block becomes transparent to
-     the grid (display: contents) so its children act as direct grid items. */
+  /* title above: content display:contents joins the grid */
 
   .awards__btns {
     justify-content: center;
@@ -250,7 +245,7 @@
 }
 
 @media (max-width: 30rem) {
-  /* Phone: strict mobile sizes (photos 187.86px, star 187.14x178px, buttons 189x44) */
+  /* phone: fixed mobile sizes */
   .awards__photos,
   .awards__logo {
     margin-top: -82.915px;

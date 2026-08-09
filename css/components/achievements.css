@@ -1,4 +1,4 @@
-/* Achievements strip below the hero */
+/* achievements strip below hero */
 .achievements {
   padding: 1rem;
 }
@@ -22,7 +22,7 @@
 }
 
 @media (min-width: 64rem) {
-  /* 1024px+: tighten the badges so the layout doesn't leave big empty bands */
+  /* wide screens: tighten badges */
   .achievements {
     padding: 0.5rem 1rem;
   }

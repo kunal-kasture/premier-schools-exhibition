@@ -1,4 +1,4 @@
-/* What makes parents choose us + visitor review videos */
+/* why us + review videos */
 .visitors-review {
   padding: 4rem 2rem;
 }
@@ -26,7 +26,7 @@
   color: #3f186a;
 }
 
-/* Single row of 417.61x290 video cards, scrolls sideways if they overflow */
+/* one row, scrolls sideways */
 .visitors-review__grid {
   display: flex;
   gap: 30px;
@@ -60,7 +60,7 @@
   object-fit: cover;
 }
 
-/* Play/pause control pinned to the bottom-left of each video */
+/* play/pause pinned bottom-left */
 .visitors-review__toggle {
   position: absolute;
   bottom: 1rem;

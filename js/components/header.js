@@ -1,4 +1,4 @@
-// Toggle a "scrolled" class on the header past a small scroll threshold.
+// add .scrolled once we scroll a bit
 function initStickyHeader() {
   const header = document.getElementById("header");
 

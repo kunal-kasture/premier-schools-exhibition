@@ -1,4 +1,4 @@
-/* Choose-the-school showcase */
+/* choose-school showcase */
 .choose-school {
   padding: 4rem 1rem;
 }
@@ -36,7 +36,7 @@
   object-fit: cover;
 }
 
-/* Pagination dots (slider mode only) */
+/* dots (slider mode only) */
 .choose-school__dots {
   display: none;
   justify-content: center;

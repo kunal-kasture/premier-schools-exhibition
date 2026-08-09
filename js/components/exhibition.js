@@ -1,6 +1,4 @@
-// Exhibition highlights slider: scroll-snap track + pagination dots,
-// with optional autoplay that pauses on hover/focus, tab hidden,
-// reduced motion, or the Pause button.
+// snap slider + dots; autoplay pauses on hover/hidden/reduced-motion/pause
 function initExhibitionSlider() {
   const track = document.querySelector(".exhibition__track");
   const dots = document.querySelectorAll(".exhibition__dot");
@@ -19,7 +17,7 @@ function initExhibitionSlider() {
     return card.getBoundingClientRect().width + gap;
   };
 
-  // Real snap stops: card i starts at i * step, clamped to the scrollable range.
+  // snap: card i at i*step, clamped
   const positions = () => {
     const s = step();
     const maxScroll = track.scrollWidth - track.clientWidth;

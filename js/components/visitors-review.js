@@ -1,4 +1,4 @@
-// Play/pause toggle for the visitor review videos.
+// play/pause for the review videos
 function initVisitorsReview() {
   document.querySelectorAll(".visitors-review__card").forEach((card) => {
     const video = card.querySelector(".visitors-review__video");

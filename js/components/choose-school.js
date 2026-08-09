@@ -1,5 +1,5 @@
-// Swipeable slider + pagination dots for the choose-school grid.
-// Desktop wraps the cards; mobile/tablet scrolls one card per swipe.
+// swipeable grid + dots
+// desktop wraps; mobile swipes one card
 function initChooseSchoolSlider() {
   const grid = document.querySelector(".choose-school__grid");
   const dots = document.querySelectorAll(".choose-school__dot");
@@ -16,7 +16,7 @@ function initChooseSchoolSlider() {
     return card.getBoundingClientRect().width + gap;
   };
 
-  // Real snap stops: card i starts at i * step, clamped to the scrollable range.
+  // snap: card i at i*step, clamped
   const positions = () => {
     const s = step();
     const maxScroll = grid.scrollWidth - grid.clientWidth;
@@ -39,7 +39,7 @@ function initChooseSchoolSlider() {
         index = i;
       }
     });
-    // Reaching the end of the scroll always highlights the last dot.
+    // end of scroll = last dot
     if (stops.length && scroll >= stops[stops.length - 1] - 1) {
       index = stops.length - 1;
     }

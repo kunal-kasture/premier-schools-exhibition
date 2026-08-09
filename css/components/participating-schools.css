@@ -1,4 +1,4 @@
-/* Two logo rows sliding in opposite directions; pause on hover/focus */
+/* logo rows slide opposite ways; pause on hover */
 .participating-schools {
   padding: 3rem 1rem;
   overflow: hidden;
@@ -42,12 +42,12 @@
   color: #ffffff;
 }
 
-/* JS toggles this class to pause both rows */
+/* js pauses rows via this class */
 .participating-schools--paused .school-slider__track {
   animation-play-state: paused;
 }
 
-/* Overflow-hidden strip; the track inside does the sliding */
+/* clip strip; inner track slides */
 .school-slider {
   position: relative;
   width: 100%;
@@ -55,21 +55,21 @@
   padding: 1rem 0 2rem;
 }
 
-/* Track holds two copies so the loop is seamless */
+/* two copies for a seamless loop */
 .school-slider__track {
   display: flex;
   flex-wrap: nowrap;
   gap: 1.5rem;
   width: max-content;
-  animation: marquee-rtl 30s linear infinite; /* default: right-to-left */
+  animation: marquee-rtl 30s linear infinite; /* default: rtl */
 }
 
-/* Row 1: left to right */
+/* row 1: ltr */
 .school-slider--ltr .school-slider__track {
   animation-name: marquee-ltr;
 }
 
-/* Pause while hovered or focused */
+/* pause on hover/focus */
 .school-slider:hover .school-slider__track,
 .school-slider:focus-within .school-slider__track {
   animation-play-state: paused;
@@ -112,7 +112,7 @@
   }
 }
 
-/* Reduced motion: keep the rows static */
+/* reduced motion: freeze */
 @media (prefers-reduced-motion: reduce) {
   .school-slider__track {
     animation: none;

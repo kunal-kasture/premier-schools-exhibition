@@ -1,4 +1,4 @@
-/* Component styles */
+/* components */
 @import "./components/header.css";
 @import "./components/hero.css";
 @import "./components/achievements.css";
@@ -9,8 +9,9 @@
 @import "./components/awards.css";
 @import "./components/exhibition.css";
 @import "./components/visitors-review.css";
+@import "./components/gallery.css";
 
-/* Base styles */
+/* base */
 body {
   background-color: #ffffff;
   margin: 0;
@@ -18,7 +19,7 @@ body {
   font-family: "Open Sans", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Skip link: hidden off-screen until focused */
+/* skip link: hidden till focused */
 .skip-link {
   position: absolute;
   top: -3rem;
