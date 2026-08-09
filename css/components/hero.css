@@ -485,10 +485,10 @@
   }
 }
 
-/* reduced motion: slow instead of stop */
+/* reduced motion: freeze the capsules */
 @media (prefers-reduced-motion: reduce) {
   .hero__capsule-track,
   .hero__capsule-col--offset .hero__capsule-track {
-    animation-duration: 45s;
+    animation: none;
   }
 }

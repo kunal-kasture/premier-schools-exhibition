@@ -1,6 +1,6 @@
 // Drag to scroll, touch swipes on its own.
 function initGallery() {
-  const track = document.querySelector(".gallery-track");
+  const track = document.querySelector(".gallery__track");
   if (!track) return;
 
   let isDown = false;
@@ -12,7 +12,7 @@ function initGallery() {
     isDown = true;
     startX = e.clientX;
     startScroll = track.scrollLeft;
-    track.classList.add("gallery-track--dragging");
+    track.classList.add("gallery__track--dragging");
   });
 
   track.addEventListener("pointermove", (e) => {
@@ -23,7 +23,7 @@ function initGallery() {
   const stop = () => {
     if (!isDown) return;
     isDown = false;
-    track.classList.remove("gallery-track--dragging");
+    track.classList.remove("gallery__track--dragging");
   };
 
   track.addEventListener("pointerup", stop);

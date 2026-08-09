@@ -10,6 +10,7 @@
 @import "./components/exhibition.css";
 @import "./components/visitors-review.css";
 @import "./components/gallery.css";
+@import "./components/footer.css";
 
 /* base */
 body {

@@ -6,7 +6,7 @@
     <title>Premier Schools Exhibition (PSE)</title>
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap"
     />
     <link rel="stylesheet" href="./css/main.css" />
   </head>
@@ -64,7 +64,7 @@
                     >
                     <br />
                     <span style="font-size: var(--hero-title-xl, 50px)"
-                      >Top 30+ schools</span
+                      >Top 30+ Schools</span
                     >
                     <br />
                     <span
@@ -250,8 +250,8 @@
                       </div>
                     </div>
                   </div>
-          </div>
-        </div>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -578,7 +578,12 @@
         <h2 class="choose-school__title" id="choose-school-title">
           Choose the School That Fits You Best
         </h2>
-        <div class="choose-school__grid">
+        <div
+          class="choose-school__grid"
+          role="region"
+          aria-label="School categories, scroll horizontally on smaller screens"
+          tabindex="0"
+        >
           <div class="choose-school__card">
             <img src="./assets/school-category1.svg" alt="School category 1" />
           </div>
@@ -723,19 +728,34 @@
             aria-label="Exhibition highlights slides"
           >
             <article class="exhibition__card">
-              <img src="./assets/exhibition1.svg" alt="Exhibition highlight 1" />
+              <img
+                src="./assets/exhibition1.svg"
+                alt="Exhibition highlight 1"
+              />
             </article>
             <article class="exhibition__card">
-              <img src="./assets/exhibition2.svg" alt="Exhibition highlight 2" />
+              <img
+                src="./assets/exhibition2.svg"
+                alt="Exhibition highlight 2"
+              />
             </article>
             <article class="exhibition__card">
-              <img src="./assets/exhibition3.svg" alt="Exhibition highlight 3" />
+              <img
+                src="./assets/exhibition3.svg"
+                alt="Exhibition highlight 3"
+              />
             </article>
             <article class="exhibition__card">
-              <img src="./assets/exhibition4.svg" alt="Exhibition highlight 4" />
+              <img
+                src="./assets/exhibition4.svg"
+                alt="Exhibition highlight 4"
+              />
             </article>
             <article class="exhibition__card">
-              <img src="./assets/exhibition5.svg" alt="Exhibition highlight 5" />
+              <img
+                src="./assets/exhibition5.svg"
+                alt="Exhibition highlight 5"
+              />
             </article>
           </div>
           <div class="exhibition__controls">
@@ -829,8 +849,14 @@
               playsinline
               aria-label="Visitor review video 1"
             ></video>
-            <button class="visitors-review__toggle" type="button" aria-pressed="false">
-              <span class="visitors-review__toggle-icon" aria-hidden="true">❚❚</span>
+            <button
+              class="visitors-review__toggle"
+              type="button"
+              aria-pressed="false"
+            >
+              <span class="visitors-review__toggle-icon" aria-hidden="true"
+                >❚❚</span
+              >
               <span class="visitors-review__toggle-text">Play Review</span>
             </button>
           </div>
@@ -844,8 +870,14 @@
               playsinline
               aria-label="Visitor review video 2"
             ></video>
-            <button class="visitors-review__toggle" type="button" aria-pressed="false">
-              <span class="visitors-review__toggle-icon" aria-hidden="true">❚❚</span>
+            <button
+              class="visitors-review__toggle"
+              type="button"
+              aria-pressed="false"
+            >
+              <span class="visitors-review__toggle-icon" aria-hidden="true"
+                >❚❚</span
+              >
               <span class="visitors-review__toggle-text">Play Review</span>
             </button>
           </div>
@@ -859,8 +891,14 @@
               playsinline
               aria-label="Visitor review video 3"
             ></video>
-            <button class="visitors-review__toggle" type="button" aria-pressed="false">
-              <span class="visitors-review__toggle-icon" aria-hidden="true">❚❚</span>
+            <button
+              class="visitors-review__toggle"
+              type="button"
+              aria-pressed="false"
+            >
+              <span class="visitors-review__toggle-icon" aria-hidden="true"
+                >❚❚</span
+              >
               <span class="visitors-review__toggle-text">Play Review</span>
             </button>
           </div>
@@ -874,8 +912,14 @@
               playsinline
               aria-label="Visitor review video 4"
             ></video>
-            <button class="visitors-review__toggle" type="button" aria-pressed="false">
-              <span class="visitors-review__toggle-icon" aria-hidden="true">❚❚</span>
+            <button
+              class="visitors-review__toggle"
+              type="button"
+              aria-pressed="false"
+            >
+              <span class="visitors-review__toggle-icon" aria-hidden="true"
+                >❚❚</span
+              >
               <span class="visitors-review__toggle-text">Play Review</span>
             </button>
           </div>
@@ -885,9 +929,17 @@
       <!-- Gallery -->
       <section class="gallery" aria-labelledby="gallery-title">
         <h2 class="gallery__title" id="gallery-title">Gallery</h2>
-        <div class="gallery-container">
-          <span class="gallery-arc gallery-arc--top" aria-hidden="true"></span>
-          <div class="gallery-track">
+        <div class="gallery__container">
+          <span
+            class="gallery__arc gallery__arc--top"
+            aria-hidden="true"
+          ></span>
+          <div
+            class="gallery__track"
+            role="region"
+            aria-label="Gallery photos, scroll horizontally"
+            tabindex="0"
+          >
             <img
               src="./assets/gallery-photo1.jpg"
               alt="Gallery photo 1"
@@ -919,12 +971,69 @@
               draggable="false"
             />
           </div>
-          <span class="gallery-arc gallery-arc--bottom" aria-hidden="true"></span>
-        </div>
-      </section>
+          <span
+            class="gallery__arc gallery__arc--bottom"
+            aria-hidden="true"
+          ></span>
         </div>
       </section>
     </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer__content">
+        <img
+          src="./assets/logo.svg"
+          alt="Premier Schools Exhibition Logo"
+          class="footer__logo"
+        />
+        <div class="footer__block">
+          <img src="./assets/location-pin.svg" alt="" class="footer__icon" />
+          <p class="footer__title">Corporate Office:</p>
+          <p class="footer__subtitle">
+            Suite B-5, Ballygunge Park Tower,<br />
+            67B Ballygunge Circular Road,<br />
+            Kolkata - 700019
+          </p>
+        </div>
+        <div class="footer__block">
+          <img src="./assets/location-pin.svg" alt="" class="footer__icon" />
+          <p class="footer__title">Ahmedabad Office:</p>
+          <p class="footer__subtitle">
+            12/AA, Swastik Chambers, Near CU<br />
+            Shah College, Ashram Road,<br />
+            Ahmedabad - 380009
+          </p>
+        </div>
+        <div class="footer__block">
+          <img src="./assets/phone-icon.svg" alt="" class="footer__icon" />
+          <p class="footer__title">Call us on</p>
+          <p class="footer__subtitle">
+            9674805912<br />
+            9674585012
+          </p>
+        </div>
+        <div class="footer__block">
+          <p class="footer__title">Follow us on</p>
+          <div class="footer__social">
+            <a href="#" class="footer__social-link" aria-label="Instagram">
+              <img src="./assets/instagram-icon.svg" alt="Instagram" />
+            </a>
+            <a href="#" class="footer__social-link" aria-label="Facebook">
+              <img src="./assets/facebook-icon.svg" alt="Facebook" />
+            </a>
+            <a href="#" class="footer__social-link" aria-label="YouTube">
+              <img src="./assets/youtube-icon.svg" alt="YouTube" />
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p class="footer__copyright">
+          Copyright © 2025 | All rights reserved. Premier Schools Exhibition
+        </p>
+      </div>
+    </footer>
 
     <!-- Scripts deferred so they work from file:// -->
     <script defer src="./js/components/header.js"></script>
@@ -933,6 +1042,7 @@
     <script defer src="./js/components/choose-school.js"></script>
     <script defer src="./js/components/exhibition.js"></script>
     <script defer src="./js/components/visitors-review.js"></script>
+    <script defer src="./js/components/participating-schools.js"></script>
     <script defer src="./js/components/gallery.js"></script>
     <script defer src="./js/main.js"></script>
   </body>

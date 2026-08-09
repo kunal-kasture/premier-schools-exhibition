@@ -17,13 +17,15 @@ function initExhibitionSlider() {
     return card.getBoundingClientRect().width + gap;
   };
 
-  // snap: card i at i*step, clamped
+  // snap: card i at i*step, clamped to the scrollable range
+  // (dedupe stops so cards that can't align to start share one stop)
   const positions = () => {
     const s = step();
     const maxScroll = track.scrollWidth - track.clientWidth;
     const stops = [];
     for (let i = 0; i < cards.length; i++) {
-      stops.push(Math.min(i * s, maxScroll));
+      const stop = Math.min(i * s, maxScroll);
+      if (stops[stops.length - 1] !== stop) stops.push(stop);
     }
     return stops;
   };
@@ -61,7 +63,18 @@ function initExhibitionSlider() {
 
   const goTo = (i) => {
     const stops = positions();
-    track.scrollTo({ left: stops[i] ?? 0, behavior: "smooth" });
+    track.scrollTo({
+      left: stops[i] ?? 0,
+      behavior: reducedMotion ? "auto" : "smooth",
+    });
+  };
+
+  // hide dots that don't map to a real snap stop (fewer stops on wide screens)
+  const syncDots = () => {
+    const count = positions().length;
+    dots.forEach((dot, i) => {
+      dot.style.display = i < count ? "" : "none";
+    });
   };
 
   const prevBtn = document.querySelector(".exhibition__arrow--prev");
@@ -74,7 +87,7 @@ function initExhibitionSlider() {
   prevBtn?.addEventListener("click", () => stepBy(-1));
   nextBtn?.addEventListener("click", () => stepBy(1));
 
-  const reducedMotion = window.matchMedia(
+  let reducedMotion = window.matchMedia(
     "(prefers-reduced-motion: reduce)",
   ).matches;
   let timer = null;
@@ -112,7 +125,8 @@ function initExhibitionSlider() {
   });
   window
     .matchMedia("(prefers-reduced-motion: reduce)")
-    .addEventListener?.("change", () => {
+    .addEventListener?.("change", (e) => {
+      reducedMotion = e.matches;
       if (isPaused()) stop();
       else start();
     });
@@ -129,7 +143,11 @@ function initExhibitionSlider() {
     else stop();
   });
 
-  window.addEventListener("resize", updateDots);
+  window.addEventListener("resize", () => {
+    syncDots();
+    updateDots();
+  });
+  syncDots();
   updateDots();
   start();
 }

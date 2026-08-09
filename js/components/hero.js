@@ -9,7 +9,7 @@ function initHeroSlider() {
   const heroSlider = document.getElementById("hero-slider");
 
   let currentSlide = 0;
-  const reduceMotion = window.matchMedia(
+  let reduceMotion = window.matchMedia(
     "(prefers-reduced-motion: reduce)",
   ).matches;
   let isPlaying = !reduceMotion;
@@ -123,4 +123,24 @@ function initHeroSlider() {
     pauseBtn?.setAttribute("aria-label", "Play slideshow");
     if (pauseBtn) pauseBtn.textContent = "▶";
   }
+
+  // keep in sync if the reduced-motion preference changes at runtime
+  window
+    .matchMedia("(prefers-reduced-motion: reduce)")
+    .addEventListener?.("change", (e) => {
+      reduceMotion = e.matches;
+      if (reduceMotion) {
+        stopAutoPlay();
+        isPlaying = false;
+        pauseBtn?.setAttribute("aria-pressed", "true");
+        pauseBtn?.setAttribute("aria-label", "Play slideshow");
+        if (pauseBtn) pauseBtn.textContent = "▶";
+      } else {
+        isPlaying = true;
+        startAutoPlay();
+        pauseBtn?.setAttribute("aria-pressed", "false");
+        pauseBtn?.setAttribute("aria-label", "Pause slideshow");
+        if (pauseBtn) pauseBtn.textContent = "⏸";
+      }
+    });
 }

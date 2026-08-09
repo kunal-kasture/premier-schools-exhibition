@@ -45,19 +45,33 @@
 }
 
 .choose-school__dot {
-  width: 10px;
-  height: 10px;
+  position: relative;
+  width: 24px;
+  height: 24px;
   padding: 0;
   border: none;
   border-radius: 50%;
-  background: #c9c4d8;
+  background: transparent;
   cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+/* visible dot, centered in the 24px hit area */
+.choose-school__dot::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #c9c4d8;
   transition:
     background 0.2s ease,
     transform 0.2s ease;
 }
 
-.choose-school__dot--active {
+.choose-school__dot--active::before {
   background: #3f186a;
   transform: scale(1.25);
 }
